@@ -15,3 +15,6 @@ accessible field net/minecraft/data/loot/BlockLootSubProvider HAS_NO_SHEARS_OR_S
 accessible method net/minecraft/world/entity/Entity getOnPos (F)Lnet/minecraft/core/BlockPos;
 accessible method net/minecraft/world/entity/Entity calculateViewVector (FF)Lnet/minecraft/world/phys/Vec3;
 accessible method net/minecraft/world/level/block/BaseEntityBlock createTickerHelper (Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/world/level/block/entity/BlockEntityTicker;)Lnet/minecraft/world/level/block/entity/BlockEntityTicker;
+accessible method net/minecraft/core/particles/SimpleParticleType <init> (Z)V
+accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns ITEM_TO_POT_TEXTURE Ljava/util/Map;
+mutable field net/minecraft/world/level/block/entity/DecoratedPotPatterns ITEM_TO_POT_TEXTURE Ljava/util/Map;

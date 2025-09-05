@@ -9,6 +9,7 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Blocks;
 
+// TODO: FIX
 public class SlippingCurseEnchantment extends Enchantment {
 
     public SlippingCurseEnchantment() {

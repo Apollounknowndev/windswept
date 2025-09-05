@@ -22,7 +22,7 @@ public class NightshadeFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         BlockPos origin = context.origin();
         WorldGenLevel level = context.level();
-        BlockState state = WindsweptBlocks.NIGHTSHADE.get().defaultBlockState();
+        BlockState state = WindsweptBlocks.NIGHTSHADE.defaultBlockState();
         RandomSource rand = context.random();
         boolean generated = false;
 

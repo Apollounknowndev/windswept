@@ -31,19 +31,19 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
     private void renderArmorPiece(PoseStack pose, MultiBufferSource source, T entity, EquipmentSlot slot, int i, A model, CallbackInfo info) {
         ItemStack stack = entity.getItemBySlot(slot);
 
-        if (entity.getItemBySlot(slot).is(WindsweptItems.WOODEN_BUCKET.get())) {
+        if (entity.getItemBySlot(slot).is(WindsweptItems.WOODEN_BUCKET)) {
             this.getParentModel().copyPropertiesTo(model);
             model.head.visible = true;
             model.hat.visible = true;
 
-            VertexConsumer vertexconsumer = ItemRenderer.getArmorFoilBuffer(source, RenderType.armorCutoutNoCull(Windswept.location("textures/models/armor/wooden_bucket_layer_1.png")), false, false);
+            VertexConsumer vertexconsumer = ItemRenderer.getArmorFoilBuffer(source, RenderType.armorCutoutNoCull(Windswept.id("textures/models/armor/wooden_bucket_layer_1.png")), false, false);
             model.renderToBuffer(pose, vertexconsumer, i, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 1f);
 
             info.cancel();
-        } else if (stack.isEmpty() && slot == EquipmentSlot.LEGS &&entity.getItemBySlot(EquipmentSlot.CHEST).is(WindsweptItems.FEATHER_CLOAK.get())) {
+        } else if (stack.isEmpty() && slot == EquipmentSlot.LEGS &&entity.getItemBySlot(EquipmentSlot.CHEST).is(WindsweptItems.FEATHER_CLOAK)) {
             this.getParentModel().copyPropertiesTo(model);
 
-            VertexConsumer vertexconsumer = ItemRenderer.getArmorFoilBuffer(source, RenderType.armorCutoutNoCull(Windswept.location("textures/models/armor/feather_cloak_layer_1.png")), false, false);
+            VertexConsumer vertexconsumer = ItemRenderer.getArmorFoilBuffer(source, RenderType.armorCutoutNoCull(Windswept.id("textures/models/armor/feather_cloak_layer_1.png")), false, false);
             model.renderToBuffer(pose, vertexconsumer, i, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 1f);
         }
     }

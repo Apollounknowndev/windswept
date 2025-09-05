@@ -10,7 +10,7 @@ public final class WindsweptModelLayers {
     public static final ModelLayerLocation FROSTBITER = createLocation("frostbiter");
 
     private static ModelLayerLocation createLocation(String name) {
-        return new ModelLayerLocation(Windswept.location(name), "main");
+        return new ModelLayerLocation(Windswept.id(name), "main");
     }
 
     // Mob Models //

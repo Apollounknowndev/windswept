@@ -25,8 +25,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class IciclesBlock extends Block implements SimpleWaterloggedBlock {
     public static final EnumProperty<IcicleStates> STATE = EnumProperty.create("state", IcicleStates.class);
@@ -138,7 +136,6 @@ public class IciclesBlock extends Block implements SimpleWaterloggedBlock {
         return null;
     }
 
-    @OnlyIn(Dist.CLIENT)
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
         if (rand.nextFloat() < .05f && !state.getValue(WATERLOGGED) && level.getBlockState(pos.below()).isAir())

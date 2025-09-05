@@ -7,10 +7,8 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.function.Supplier;
-
 public class MimosaBlock extends FlowerBlock {
-    public MimosaBlock(Supplier<MobEffect> stewEffect, int stewEffectDuration, Properties properties) {
+    public MimosaBlock(MobEffect stewEffect, int stewEffectDuration, Properties properties) {
         super(stewEffect, stewEffectDuration, properties);
     }
 

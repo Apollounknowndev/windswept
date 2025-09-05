@@ -21,7 +21,7 @@ public class BluebellsFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos origin = context.origin();
         WorldGenLevel level = context.level();
         RandomSource rand = context.random();
-        BlockState state = WindsweptBlocks.BLUEBELLS.get().defaultBlockState();
+        BlockState state = WindsweptBlocks.BLUEBELLS.defaultBlockState();
         boolean generated = false;
 
         for (int x = -5; x <= 5; ++x)

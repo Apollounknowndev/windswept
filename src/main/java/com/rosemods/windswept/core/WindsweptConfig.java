@@ -2,10 +2,8 @@ package com.rosemods.windswept.core;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import org.apache.commons.lang3.tuple.Pair;
 
-@EventBusSubscriber(modid = Windswept.MOD_ID)
 public class WindsweptConfig {
     public static final Common COMMON;
     public static final Client CLIENT;

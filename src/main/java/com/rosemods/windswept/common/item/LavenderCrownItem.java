@@ -14,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.UUID;
 
+// TODO: FIX
 public class LavenderCrownItem extends ArmorItem {
     private static final UUID FRAGRANCE_UUID = UUID.fromString("1e2757d5-d814-4465-a958-36a6cdeeb624");
 

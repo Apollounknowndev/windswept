@@ -12,6 +12,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.IForgeShearable;
 
+// TODO: FIX
 public class SproutsBlock extends BushBlock implements IForgeShearable {
     protected static final VoxelShape SHAPE = Block.box(2f, 0f, 2f, 14f, 4.5f, 14f);
 

@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class NightFairyLightBlockEntity extends BlockEntity {
     public NightFairyLightBlockEntity(BlockPos pos, BlockState state) {
-        super(WindsweptBlockEntities.NIGHT_FAIRY_LIGHT.get(), pos, state);
+        super(WindsweptBlockEntities.NIGHT_FAIRY_LIGHT, pos, state);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, NightFairyLightBlockEntity entity) {

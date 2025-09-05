@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.function.Supplier;
 
 public class SnowdropBlock extends FlowerBlock {
-    public SnowdropBlock(Supplier<MobEffect> stewEffect, int stewEffectDuration, Properties properties) {
+    public SnowdropBlock(MobEffect stewEffect, int stewEffectDuration, Properties properties) {
         super(stewEffect, stewEffectDuration, properties);
     }
 

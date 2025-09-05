@@ -18,6 +18,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ToolActions;
 
+// TODO: FIX
 public class PineconeBlockBlock extends RotatedPillarBlock {
     public PineconeBlockBlock(Properties properties) {
         super(properties);

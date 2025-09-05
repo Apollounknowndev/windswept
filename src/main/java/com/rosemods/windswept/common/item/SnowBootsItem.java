@@ -22,6 +22,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.UUID;
 
+// TODO: FIX
 public class SnowBootsItem extends DyeableArmorItem {
     private static final UUID SNOW_SPEED_UUID = UUID.fromString("713d8671-29b8-4600-ba51-580b91cc24cf");
     private static final UUID SPEED_MODIFIER_SNOW_SPEED_UUID = UUID.fromString("c51348dc-85bf-4ac5-8428-deefefec04aa");
@@ -36,7 +37,7 @@ public class SnowBootsItem extends DyeableArmorItem {
         builder.putAll(super.getDefaultAttributeModifiers(slot));
 
         if (slot == this.type.getSlot())
-            builder.put(WindsweptAttributes.SNOW_SPEED.get(), new AttributeModifier(SNOW_SPEED_UUID,
+            builder.put(WindsweptAttributes.SNOW_SPEED, new AttributeModifier(SNOW_SPEED_UUID,
                     "Snow speed modifier", .2f, AttributeModifier.Operation.MULTIPLY_BASE));
 
         return builder.build();
@@ -54,13 +55,13 @@ public class SnowBootsItem extends DyeableArmorItem {
 
     private static boolean isSnowingAt(LivingEntity entity) {
         BlockPos pos = entity.blockPosition();
-        return entity.level().isRaining() && entity.level().getBiome(pos).get().getPrecipitationAt(pos) == Biome.Precipitation.SNOW;
+        return entity.level().isRaining() && entity.level().getBiome(pos).value().getPrecipitationAt(pos) == Biome.Precipitation.SNOW;
     }
 
     public static boolean canSpawnSnowParticle(LivingEntity entity) {
         return entity.tickCount % 5 == 0 && entity.getDeltaMovement().x != 0d && entity.getDeltaMovement().z != 0d
                 && !entity.isSpectator() && canApplySnowSpeed(entity)
-                && (entity.getItemBySlot(EquipmentSlot.FEET).is(WindsweptItems.SNOW_BOOTS.get()) || entity instanceof Frostbiter);
+                && (entity.getItemBySlot(EquipmentSlot.FEET).is(WindsweptItems.SNOW_BOOTS) || entity instanceof Frostbiter);
     }
 
     public static void spawnSnowParticle(LivingEntity entity) {
@@ -80,7 +81,7 @@ public class SnowBootsItem extends DyeableArmorItem {
     }
 
     public static void tryAddSnowSpeed(LivingEntity entity) {
-        if (entity.getItemBySlot(EquipmentSlot.FEET).is(WindsweptItems.SNOW_BOOTS.get())) {
+        if (entity.getItemBySlot(EquipmentSlot.FEET).is(WindsweptItems.SNOW_BOOTS)) {
             AttributeInstance speed = entity.getAttribute(Attributes.MOVEMENT_SPEED);
 
             if (speed != null) {

@@ -28,7 +28,7 @@ public class ChestnutFoliagePlacer extends FoliagePlacer {
 
     @Override
     protected FoliagePlacerType<?> type() {
-        return WindsweptFoliagePlacers.CHESTNUT_FOLIAGE_PLACER.get();
+        return WindsweptFoliagePlacers.CHESTNUT_FOLIAGE_PLACER;
     }
 
     @Override

@@ -22,12 +22,12 @@ public class SnowyGelisolFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos origin = context.origin();
         WorldGenLevel level = context.level();
         RandomSource rand = context.random();
-        BlockState snowyGelisol = WindsweptBlocks.GELISOL.get().defaultBlockState().setValue(GelisolBlock.SNOWY, true);
-        BlockState gelisol = WindsweptBlocks.GELISOL.get().defaultBlockState();
+        BlockState snowyGelisol = WindsweptBlocks.GELISOL.defaultBlockState().setValue(GelisolBlock.SNOWY, true);
+        BlockState gelisol = WindsweptBlocks.GELISOL.defaultBlockState();
         BlockState snow = Blocks.SNOW.defaultBlockState();
         BlockState dirt = Blocks.DIRT.defaultBlockState();
-        BlockState sprouts = WindsweptBlocks.GELISOL_GRASS.get().defaultBlockState();
-        BlockState snowdrop = WindsweptBlocks.SNOWDROP.get().defaultBlockState();
+        BlockState sprouts = WindsweptBlocks.GELISOL_GRASS.defaultBlockState();
+        BlockState snowdrop = WindsweptBlocks.SNOWDROP.defaultBlockState();
         boolean generated = false;
 
         for (int x = -10; x <= 10; ++x)

@@ -14,6 +14,7 @@ repositories {
         main()
     }
     mavenCentral()
+    maven ("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/")
     maven("https://maven.teamabnormals.com/")
     maven("https://api.modrinth.com/maven")
 }
@@ -43,10 +44,12 @@ cloche {
             loaderVersion = "0.16.13"
             minecraftVersion = "1.20.1"
             mixins.from(file("src/main/windswept.mixins.json"))
+            accessWideners.from(file("src/main/windswept.accesswidener"))
 
             dependencies {
                 fabricApi("0.92.6")
                 modRuntimeOnly("maven.modrinth:lithostitched:1.4.11-fabric-1.20")
+                implementation("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:8.0.2")
             }
 
             includedClient()

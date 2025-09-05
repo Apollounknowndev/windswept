@@ -8,6 +8,7 @@ import net.minecraft.world.entity.ai.goal.Goal;
 
 import java.util.EnumSet;
 
+// TODO: FIX
 public class FrostbiterShakeGoal extends Goal {
     private final Frostbiter frostbiter;
     private int tick;

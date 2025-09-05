@@ -2,7 +2,10 @@ package com.rosemods.windswept.core.registry;
 
 import com.rosemods.windswept.common.levelgen.feature.*;
 import com.rosemods.windswept.core.Windswept;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -11,16 +14,21 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public final class WindsweptFeatures {
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Windswept.MOD_ID);
+    public static final Feature<NoneFeatureConfiguration> SNOWY_SPROUTS_PATCH = register("snowy_sprouts_patch", new SnowySproutsFeature());
+    public static final Feature<NoneFeatureConfiguration> NIGHTSHADE_PATCH = register("nightshade_patch", new NightshadeFeature());
+    public static final Feature<NoneFeatureConfiguration> BLUEBELL_PATCH = register("bluebell_patch", new BluebellsFeature());
+    public static final Feature<NoneFeatureConfiguration> LAVENDER_PATCH = register("lavender_patch", new LavenderFeature());
+    public static final Feature<NoneFeatureConfiguration> ICICLES_PATCH = register("icicles_patch", new IciclesFeature());
+    public static final Feature<NoneFeatureConfiguration> FLOOR_ICICLES_PATCH = register("floor_icicles_patch", new FloorIciclesFeature());
+    public static final Feature<SimpleBlockConfiguration> FALLEN_LOG = register("fallen_log", new FallenLogFeature());
+    public static final Feature<NoneFeatureConfiguration> SNOWY_GELISOL = register("snowy_gelisol", new SnowyGelisolFeature());
+    public static final Feature<TreeConfiguration> PINE_TREE = register("pine_tree", new PineTreeFeature());
 
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> SNOWY_SPROUTS_PATCH = FEATURES.register("snowy_sprouts_patch", SnowySproutsFeature::new);
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> NIGHTSHADE_PATCH = FEATURES.register("nightshade_patch", NightshadeFeature::new);
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> BLUEBELL_PATCH = FEATURES.register("bluebell_patch", BluebellsFeature::new);
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> LAVENDER_PATCH = FEATURES.register("lavender_patch", LavenderFeature::new);
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> ICICLES_PATCH = FEATURES.register("icicles_patch", IciclesFeature::new);
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> FLOOR_ICICLES_PATCH = FEATURES.register("floor_icicles_patch", FloorIciclesFeature::new);
-    public static final RegistryObject<Feature<SimpleBlockConfiguration>> FALLEN_LOG = FEATURES.register("fallen_log", FallenLogFeature::new);
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> SNOWY_GELISOL = FEATURES.register("snowy_gelisol", SnowyGelisolFeature::new);
-    public static final RegistryObject<Feature<TreeConfiguration>> PINE_TREE = FEATURES.register("pine_tree", PineTreeFeature::new);
+    private static <T extends FeatureConfiguration> Feature<T> register(String name, Feature<T> feature) {
+        return Registry.register(BuiltInRegistries.FEATURE, Windswept.id(name), feature);
+    }
 
+    public static void init() {
+
+    }
 }

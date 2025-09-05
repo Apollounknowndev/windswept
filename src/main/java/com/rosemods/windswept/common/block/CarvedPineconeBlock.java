@@ -54,7 +54,7 @@ public class CarvedPineconeBlock extends HorizontalDirectionalBlock {
 
             int pitch = KEY[(KEY.length - 1) - ((below + above) % KEY.length)];
 
-            level.playSound(null, pos, WindsweptSounds.PINECONE_NOTE.get(), SoundSource.RECORDS, .35f, (float) Math.pow(2d, (pitch - 10d) / 12d));
+            level.playSound(null, pos, WindsweptSounds.PINECONE_NOTE, SoundSource.RECORDS, .35f, (float) Math.pow(2d, (pitch - 10d) / 12d));
             level.addParticle(ParticleTypes.NOTE, (double) pos.getX() + .5d, (double) pos.getY() + (double) above + 1.2d, (double) pos.getZ() + .5d, (double) pitch / KEY.length, 0d, 0d);
 
             return true;

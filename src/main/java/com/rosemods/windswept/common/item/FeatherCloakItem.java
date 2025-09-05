@@ -21,6 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 
+// TODO: FIX
 @Mod.EventBusSubscriber(modid = Windswept.MOD_ID, value = Dist.CLIENT)
 public class FeatherCloakItem extends ArmorItem {
     public FeatherCloakItem(Properties properties) {

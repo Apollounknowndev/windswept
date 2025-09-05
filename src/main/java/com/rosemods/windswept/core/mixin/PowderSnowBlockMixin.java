@@ -32,10 +32,9 @@ public class PowderSnowBlockMixin extends Block implements IWoodenBucketPickupBl
         super(properties);
     }
 
-    @OnlyIn(Dist.CLIENT)
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
-        if (WindsweptConfig.CLIENT.powderSnowParticles.get() && rand.nextInt(16) == 0) {
+        if (WindsweptConfig.CLIENT.powderSnowParticles && rand.nextInt(16) == 0) {
             BlockState below = level.getBlockState(pos.below());
             if (below.isAir() || below.is(BlockTags.FIRE) || below.canBeReplaced()) {
                 double d0 = (double) pos.getX() + rand.nextDouble();
@@ -54,18 +53,18 @@ public class PowderSnowBlockMixin extends Block implements IWoodenBucketPickupBl
 
     @Override
     public Item getWoodenBucketItem(BlockState state) {
-        return WindsweptItems.WOODEN_POWDER_SNOW_BUCKET.get();
+        return WindsweptItems.WOODEN_POWDER_SNOW_BUCKET;
     }
 
     @Inject(method = "entityInside", at = @At("TAIL"))
     private void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, CallbackInfo info) {
-        if (entity instanceof LivingEntity livingEntity && livingEntity.hasEffect(WindsweptEffects.FROST_RESISTANCE.get()))
+        if (entity instanceof LivingEntity livingEntity && livingEntity.hasEffect(WindsweptEffects.FROST_RESISTANCE))
             entity.setIsInPowderSnow(false);
     }
 
     @Inject(method = "canEntityWalkOnPowderSnow", at = @At("HEAD"), cancellable = true)
     private static void canEntityWalkOnPowderSnow(Entity entity, CallbackInfoReturnable<Boolean> info) {
-        if (entity instanceof LivingEntity livingEntity && (livingEntity.getItemBySlot(EquipmentSlot.FEET).is(WindsweptItems.SNOW_BOOTS.get()) || livingEntity.hasEffect(WindsweptEffects.FROST_RESISTANCE.get())))
+        if (entity instanceof LivingEntity livingEntity && (livingEntity.getItemBySlot(EquipmentSlot.FEET).is(WindsweptItems.SNOW_BOOTS) || livingEntity.hasEffect(WindsweptEffects.FROST_RESISTANCE)))
             info.setReturnValue(true);
     }
 

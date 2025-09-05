@@ -57,7 +57,6 @@ public class RedstoneFairyLightBlock extends PineconeBlock {
         builder.add(AMOUNT, LIT);
     }
 
-    @OnlyIn(Dist.CLIENT)
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         if (state.getValue(LIT)) {

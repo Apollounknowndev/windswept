@@ -16,7 +16,7 @@ public class BeehiveBlockMixin {
     @Inject(method = "dropHoneycomb", at = @At("TAIL"))
     private static void dropHoneycomb(Level level, BlockPos pos, CallbackInfo info) {
         if (level.random.nextFloat() < WindsweptConfig.COMMON.bumblebeeDiscChance.get())
-            Block.popResourceFromFace(level, pos, level.getBlockState(pos).getValue(BeehiveBlock.FACING), WindsweptItems.MUSIC_DISC_BUMBLEBEE.get().getDefaultInstance());
+            Block.popResourceFromFace(level, pos, level.getBlockState(pos).getValue(BeehiveBlock.FACING), WindsweptItems.MUSIC_DISC_BUMBLEBEE.getDefaultInstance());
     }
 
 }

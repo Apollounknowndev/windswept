@@ -18,6 +18,7 @@ import net.minecraft.world.item.MilkBucketItem;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
+// TODO: FIX
 public class WoodenMilkBucketItem extends MilkBucketItem {
 
     public WoodenMilkBucketItem(Properties properties) {

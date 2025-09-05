@@ -1,22 +1,27 @@
 package com.rosemods.windswept.core.registry;
 
 import com.rosemods.windswept.core.Windswept;
-import com.teamabnormals.blueprint.core.util.registry.SoundSubRegistryHelper;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = Windswept.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class WindsweptSounds {
-    private static final SoundSubRegistryHelper HELPER = Windswept.REGISTRY_HELPER.getSoundSubHelper();
+    public static final SoundEvent MUSIC_DISC_RAIN = register("music_disc.rain");
+    public static final SoundEvent MUSIC_DISC_SNOW = register("music_disc.snow");
+    public static final SoundEvent MUSIC_DISC_BUMBLEBEE = register("music_disc.bumblebee");
+    public static final SoundEvent PINECONE_NOTE = register("block.pinecone.note");
 
-    public static final RegistryObject<SoundEvent> MUSIC_DISC_RAIN = HELPER.createSoundEvent("music_disc.rain");
-    public static final RegistryObject<SoundEvent> MUSIC_DISC_SNOW = HELPER.createSoundEvent("music_disc.snow");
-    public static final RegistryObject<SoundEvent> MUSIC_DISC_BUMBLEBEE = HELPER.createSoundEvent("music_disc.bumblebee");
-    public static final RegistryObject<SoundEvent> PINECONE_NOTE = HELPER.createSoundEvent("block.pinecone.note");
+    public static final SoundEvent CHILLED_DEATH = register("entity.chilled.death");
+    public static final SoundEvent CHILLED_HURT = register("entity.chilled.hurt");
+    public static final SoundEvent CHILLED_AMBIENT = register("entity.chilled.ambient");
 
-    public static final RegistryObject<SoundEvent> CHILLED_DEATH = HELPER.createSoundEvent("entity.chilled.death");
-    public static final RegistryObject<SoundEvent> CHILLED_HURT = HELPER.createSoundEvent("entity.chilled.hurt");
-    public static final RegistryObject<SoundEvent> CHILLED_AMBIENT = HELPER.createSoundEvent("entity.chilled.ambient");
+    private static SoundEvent register(String name) {
+        ResourceLocation id = Windswept.id(name);
+        return Registry.register(BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(id));
+    }
 
+    public static void init() {
+
+    }
 }

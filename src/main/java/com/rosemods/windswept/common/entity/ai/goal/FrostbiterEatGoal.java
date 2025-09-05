@@ -11,6 +11,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.EnumSet;
 
+// TODO: FIX
 public class FrostbiterEatGoal extends Goal {
     private final Frostbiter frostbiter;
     private int tick;

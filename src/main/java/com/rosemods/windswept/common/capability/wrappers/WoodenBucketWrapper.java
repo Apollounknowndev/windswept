@@ -21,6 +21,7 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
+// TODO: Yikes.
 public class WoodenBucketWrapper implements IFluidHandlerItem, ICapabilityProvider {
     private final LazyOptional<IFluidHandlerItem> holder = LazyOptional.of(() -> this);
     private ItemStack container;

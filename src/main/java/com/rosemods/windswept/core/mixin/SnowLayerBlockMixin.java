@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class SnowLayerBlockMixin {
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
     private void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand, CallbackInfo info) {
-        if (level.isRainingAt(pos) && WindsweptConfig.COMMON.rainWashSnow.get()) {
+        if (level.isRainingAt(pos) && WindsweptConfig.COMMON.rainWashSnow) {
             int i = state.getValue(SnowLayerBlock.LAYERS);
 
             if (i == 1)
@@ -27,7 +27,7 @@ public class SnowLayerBlockMixin {
         }
 
         BlockPos.betweenClosedStream(new AABB(pos).inflate(2)).forEach(blockPos -> {
-            if (level.getBlockState(blockPos).is(WindsweptBlocks.ICE_LANTERN.get()))
+            if (level.getBlockState(blockPos).is(WindsweptBlocks.ICE_LANTERN))
                 info.cancel();
         });
     }

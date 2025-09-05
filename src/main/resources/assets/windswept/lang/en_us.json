@@ -1,4 +1,6 @@
 {
+  "block.minecraft.snow_block": "Snow",
+  "block.minecraft.snow": "Snow Carpet",
   "attribute.windswept.name.generic.fragrance": "Fragrance",
   "attribute.windswept.name.generic.snow_speed": "Snow Speed",
   "attribute.windswept.name.generic.sprint_damage": "Kinetic Damage",

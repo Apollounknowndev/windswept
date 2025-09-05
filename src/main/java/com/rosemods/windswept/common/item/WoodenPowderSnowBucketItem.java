@@ -12,6 +12,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
+// TODO: FIX
 public class WoodenPowderSnowBucketItem extends SolidBucketItem {
 
     public WoodenPowderSnowBucketItem(Properties properties) {

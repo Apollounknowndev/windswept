@@ -47,16 +47,16 @@ public class FallenLogFeature extends Feature<SimpleBlockConfiguration> {
             BlockPos pos = origin.relative(axis, i);
             BlockState state = level.getBlockState(pos);
 
-            if ((state.canBeReplaced() || state.is(WindsweptBlocks.DRY_MOSS_CARPET.get())) && pos.getY() < level.getMaxBuildHeight() && canPlaceOn(level.getBlockState(pos.below())))
+            if ((state.canBeReplaced() || state.is(WindsweptBlocks.DRY_MOSS_CARPET)) && pos.getY() < level.getMaxBuildHeight() && canPlaceOn(level.getBlockState(pos.below())))
                 logs.add(pos);
             else
                 break;
         }
 
         BlockState log = context.config().toPlace().getState(rand, origin).setValue(RotatedPillarBlock.AXIS, axis);
-        BlockState carpet = WindsweptBlocks.DRY_MOSS_CARPET.get().defaultBlockState();
-        BlockState sprouts = WindsweptBlocks.DRY_MOSSY_SPROUTS.get().defaultBlockState();
-        BlockState campion = WindsweptBlocks.MOSS_CAMPION.get().defaultBlockState();
+        BlockState carpet = WindsweptBlocks.DRY_MOSS_CARPET.defaultBlockState();
+        BlockState sprouts = WindsweptBlocks.DRY_MOSSY_SPROUTS.defaultBlockState();
+        BlockState campion = WindsweptBlocks.MOSS_CAMPION.defaultBlockState();
 
         if (logs.size() >= 4) {
             for (BlockPos pos : logs) {
@@ -66,7 +66,7 @@ public class FallenLogFeature extends Feature<SimpleBlockConfiguration> {
                     level.setBlock(pos.above(), rand.nextInt(5) == 0 ? campion : (rand.nextInt(2) == 0 ? sprouts : carpet), 2);
 
                 BlockState below = level.getBlockState(pos.below());
-                if (below.is(WindsweptBlocks.GELISOL.get()) || below.is(Blocks.GRASS_BLOCK))
+                if (below.is(WindsweptBlocks.GELISOL) || below.is(Blocks.GRASS_BLOCK))
                     level.setBlock(pos.below(), Blocks.DIRT.defaultBlockState(), 2);
             }
 

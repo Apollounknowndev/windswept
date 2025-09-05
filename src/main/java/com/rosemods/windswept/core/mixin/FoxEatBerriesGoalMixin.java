@@ -20,6 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+// TODO: FIX
 @Mixin(Fox.FoxEatBerriesGoal.class)
 public abstract class FoxEatBerriesGoalMixin extends MoveToBlockGoal {
 

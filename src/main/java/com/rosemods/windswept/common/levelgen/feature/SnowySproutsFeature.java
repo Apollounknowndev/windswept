@@ -19,8 +19,8 @@ public class SnowySproutsFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         BlockPos origin = context.origin();
         WorldGenLevel level = context.level();
-        BlockState state = WindsweptBlocks.SNOWY_SPROUTS.get().defaultBlockState();
-        BlockState snowdrop = WindsweptBlocks.SNOWDROP.get().defaultBlockState();
+        BlockState state = WindsweptBlocks.SNOWY_SPROUTS.defaultBlockState();
+        BlockState snowdrop = WindsweptBlocks.SNOWDROP.defaultBlockState();
         RandomSource rand = context.random();
         boolean generated = false;
 

@@ -19,28 +19,11 @@ public class LiquidBlockMixin implements IWoodenBucketPickupBlock {
 
     @Override
     public boolean canPickupFromWoodenBucket(LevelAccessor level, BlockPos pos, BlockState state) {
-        if (ModList.get().isLoaded("create")) {
-            ResourceLocation location = ForgeRegistries.BLOCKS.getKey(state.getBlock());
-
-            if (location.equals(WindsweptConstants.HONEY) || location.equals(WindsweptConstants.CHOCOLATE))
-                return true;
-        }
-
         return state.is(Blocks.WATER);
     }
 
     @Override
     public Item getWoodenBucketItem(BlockState state) {
-        if (ModList.get().isLoaded("create")) {
-            ResourceLocation location = ForgeRegistries.BLOCKS.getKey(state.getBlock());
-
-            if (location.equals(WindsweptConstants.HONEY))
-                return WindsweptItems.WOODEN_HONEY_BUCKET.get();
-            else if (location.equals(WindsweptConstants.CHOCOLATE))
-                return WindsweptItems.WOODEN_CHOCOLATE_BUCKET.get();
-        }
-
-        return WindsweptItems.WOODEN_WATER_BUCKET.get();
+        return WindsweptItems.WOODEN_WATER_BUCKET;
     }
-
 }

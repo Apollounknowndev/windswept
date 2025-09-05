@@ -18,6 +18,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.function.Supplier;
 
+// TODO: FIX
 public class DrinkableBottleItem extends HoneyBottleItem {
     private final Supplier<SoundEvent> drinkSound;
 

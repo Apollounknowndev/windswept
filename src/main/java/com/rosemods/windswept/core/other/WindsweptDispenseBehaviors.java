@@ -12,22 +12,15 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import static com.rosemods.windswept.core.registry.WindsweptItems.*;
 
 public final class WindsweptDispenseBehaviors {
     public static void registerDispenseBehaviors() {
-        DispenserBlock.registerBehavior(WOODEN_BUCKET.get(), WindsweptDispenseBehaviors::fillBucket);
-        DispenserBlock.registerBehavior(WOODEN_WATER_BUCKET.get(), WindsweptDispenseBehaviors::emptyWaterBucket);
-        DispenserBlock.registerBehavior(WOODEN_POWDER_SNOW_BUCKET.get(), WindsweptDispenseBehaviors::emptyPowderSnowBucket);
-        DispenserBlock.registerBehavior(FROST_ARROW.get(), new FrostArrowDispenseBehavior());
-
-        if (ModList.get().isLoaded("create")) {
-            DispenserBlock.registerBehavior(WOODEN_HONEY_BUCKET.get(), WindsweptDispenseBehaviors::emptyHoneyBucket);
-            DispenserBlock.registerBehavior(WOODEN_CHOCOLATE_BUCKET.get(), WindsweptDispenseBehaviors::emptyChocolateBucket);
-        }
+        DispenserBlock.registerBehavior(WOODEN_BUCKET, WindsweptDispenseBehaviors::fillBucket);
+        DispenserBlock.registerBehavior(WOODEN_WATER_BUCKET, WindsweptDispenseBehaviors::emptyWaterBucket);
+        DispenserBlock.registerBehavior(WOODEN_POWDER_SNOW_BUCKET, WindsweptDispenseBehaviors::emptyPowderSnowBucket);
+        DispenserBlock.registerBehavior(FROST_ARROW, new FrostArrowDispenseBehavior());
     }
 
     private static ItemStack fillBucket(BlockSource source, ItemStack stack) {
@@ -69,13 +62,4 @@ public final class WindsweptDispenseBehaviors {
     private static ItemStack emptyPowderSnowBucket(BlockSource source, ItemStack stack) {
         return emptyBucket(Blocks.POWDER_SNOW, source, stack);
     }
-
-    private static ItemStack emptyHoneyBucket(BlockSource source, ItemStack stack) {
-        return emptyBucket(ForgeRegistries.BLOCKS.getValue(WindsweptConstants.HONEY), source, stack);
-    }
-
-    private static ItemStack emptyChocolateBucket(BlockSource source, ItemStack stack) {
-        return emptyBucket(ForgeRegistries.BLOCKS.getValue(WindsweptConstants.CHOCOLATE), source, stack);
-    }
-
 }

@@ -1,6 +1,5 @@
 package com.rosemods.windswept.common.entity;
 
-import com.rosemods.windswept.core.other.WindsweptConstants;
 import com.rosemods.windswept.core.other.tags.WindsweptBiomeTags;
 import com.rosemods.windswept.core.registry.WindsweptBlocks;
 import com.rosemods.windswept.core.registry.WindsweptEnchantments;
@@ -20,11 +19,9 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Zombie;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fml.ModList;
 
 public class Chilled extends Zombie {
 
@@ -44,17 +41,17 @@ public class Chilled extends Zombie {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return WindsweptSounds.CHILLED_AMBIENT.get();
+        return WindsweptSounds.CHILLED_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return WindsweptSounds.CHILLED_HURT.get();
+        return WindsweptSounds.CHILLED_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return WindsweptSounds.CHILLED_DEATH.get();
+        return WindsweptSounds.CHILLED_DEATH;
     }
 
     @Override
@@ -79,61 +76,31 @@ public class Chilled extends Zombie {
         if (rand.nextFloat() < chance)
             this.setItemSlot(EquipmentSlot.HEAD, Items.LEATHER_HELMET.getDefaultInstance());
 
-        this.cncCompat(rand);
-
         if (rand.nextFloat() < .075f) {
-            this.setItemSlot(EquipmentSlot.OFFHAND, WindsweptItems.CANDY_CANE.get().getDefaultInstance());
+            this.setItemSlot(EquipmentSlot.OFFHAND, WindsweptItems.CANDY_CANE.getDefaultInstance());
             this.armorDropChances[EquipmentSlot.OFFHAND.getIndex()] = 1f;
         }
 
         if (rand.nextFloat() < chance) {
             boolean snow = rand.nextBoolean();
-            this.setItemSlot(EquipmentSlot.FEET, snow ? WindsweptItems.SNOW_BOOTS.get().getDefaultInstance() : Items.LEATHER_BOOTS.getDefaultInstance());
+            this.setItemSlot(EquipmentSlot.FEET, snow ? WindsweptItems.SNOW_BOOTS.getDefaultInstance() : Items.LEATHER_BOOTS.getDefaultInstance());
 
             if (snow)
                 this.armorDropChances[EquipmentSlot.FEET.getIndex()] = .5f;
         }
 
         if (rand.nextFloat() < .1f && this.level().getBiome(this.blockPosition()).is(WindsweptBiomeTags.IS_PINE_BARRENS)) {
-            this.setItemSlot(EquipmentSlot.HEAD, WindsweptBlocks.CARVED_PINECONE_BLOCK.get().asItem().getDefaultInstance());
+            this.setItemSlot(EquipmentSlot.HEAD, WindsweptBlocks.CARVED_PINECONE_BLOCK.asItem().getDefaultInstance());
             this.armorDropChances[EquipmentSlot.HEAD.getIndex()] = .5f;
         }
 
-    }
-
-    public void cncCompat(RandomSource random) {
-        if (ModList.get().isLoaded("caverns_and_chasms")) {
-            if (random.nextFloat() < .075f)
-                this.setItemSlot(EquipmentSlot.MAINHAND, randomDurability(random, WindsweptConstants.getItem("caverns_and_chasms", random.nextBoolean() ? "silver_sword" : "silver_shovel")));
-            else if (random.nextFloat() < .05f) {
-                Item axe = WindsweptConstants.getItem("caverns_and_chasms", "silver_axe");
-                this.setItemSlot(EquipmentSlot.MAINHAND, randomDurability(random, axe));
-                this.setItemSlot(EquipmentSlot.OFFHAND, randomDurability(random, axe));
-            }
-
-            if (random.nextFloat() < .05f)
-                this.setItemSlot(EquipmentSlot.HEAD, randomDurability(random, WindsweptConstants.getItem("caverns_and_chasms", "silver_helmet")));
-            if (random.nextFloat() < .05f)
-                this.setItemSlot(EquipmentSlot.CHEST, randomDurability(random, WindsweptConstants.getItem("caverns_and_chasms", "silver_chestplate")));
-            if (random.nextFloat() < .05f)
-                this.setItemSlot(EquipmentSlot.LEGS, randomDurability(random, WindsweptConstants.getItem("caverns_and_chasms", "silver_leggings")));
-            if (random.nextFloat() < .05f)
-                this.setItemSlot(EquipmentSlot.FEET, randomDurability(random, WindsweptConstants.getItem("caverns_and_chasms", "silver_boots")));
-        }
-    }
-
-    private static ItemStack randomDurability(RandomSource random, Item item) {
-        ItemStack stack = item.getDefaultInstance();
-        stack.setDamageValue(random.nextInt(1, stack.getMaxDamage()));
-
-        return stack;
     }
 
     @Override
     protected void enchantSpawnedArmor(RandomSource rand, float difficulty, EquipmentSlot slot) {
         ItemStack stack = this.getItemBySlot(slot);
         if (!stack.isEmpty() && this.random.nextFloat() < .5f * difficulty)
-            stack.enchant(WindsweptEnchantments.SLIPPING_CURSE.get(), 0);
+            stack.enchant(WindsweptEnchantments.SLIPPING_CURSE, 0);
         else
             super.enchantSpawnedArmor(rand, difficulty, slot);
     }

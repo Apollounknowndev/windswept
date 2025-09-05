@@ -29,7 +29,7 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Override
     public void setTicksFrozen(int ticks) {
-        boolean hasFrostResist = ((LivingEntity) (Object) this).hasEffect(WindsweptEffects.FROST_RESISTANCE.get());
+        boolean hasFrostResist = ((LivingEntity) (Object) this).hasEffect(WindsweptEffects.FROST_RESISTANCE);
 
         if (!hasFrostResist && !this.getType().is(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES))
             super.setTicksFrozen(ticks);
@@ -39,7 +39,7 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Override
     public int getTicksFrozen() {
-        if (((LivingEntity) (Object) this).hasEffect(WindsweptEffects.FROST_RESISTANCE.get()) || this.getType().is(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES))
+        if (((LivingEntity) (Object) this).hasEffect(WindsweptEffects.FROST_RESISTANCE) || this.getType().is(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES))
             return 0;
 
         return super.getTicksFrozen();
@@ -57,7 +57,7 @@ public abstract class LivingEntityMixin extends Entity {
     private void canFreeze(CallbackInfoReturnable<Boolean> info) {
         LivingEntity entity = (LivingEntity) (Object) this;
 
-        info.setReturnValue(!entity.getType().is(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES) && !entity.isSpectator() && !entity.hasEffect(WindsweptEffects.FROST_RESISTANCE.get()));
+        info.setReturnValue(!entity.getType().is(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES) && !entity.isSpectator() && !entity.hasEffect(WindsweptEffects.FROST_RESISTANCE));
     }
 
     @Inject(method = "onChangedBlock", at = @At("TAIL"))
@@ -66,10 +66,10 @@ public abstract class LivingEntityMixin extends Entity {
 
         if (SnowBootsItem.canApplySnowSpeed(entity))
             SnowBootsItem.tryAddSnowSpeed(entity);
-        else if (!entity.level().getBlockState(entity.getOnPos()).isAir() || entity.isFallFlying() || !entity.getItemBySlot(EquipmentSlot.FEET).is(WindsweptItems.SNOW_BOOTS.get()))
+        else if (!entity.level().getBlockState(entity.getOnPos()).isAir() || entity.isFallFlying() || !entity.getItemBySlot(EquipmentSlot.FEET).is(WindsweptItems.SNOW_BOOTS))
             SnowBootsItem.removeSnowSpeed(entity);
 
-        if (!entity.isSprinting() || !entity.getItemBySlot(EquipmentSlot.HEAD).is(WindsweptItems.ANTLER_HELMET.get()))
+        if (!entity.isSprinting() || !entity.getItemBySlot(EquipmentSlot.HEAD).is(WindsweptItems.ANTLER_HELMET))
             AntlerHelmetItem.removeSprintDamage(entity);
 
         AntlerHelmetItem.tryAddSprintDamage(entity);

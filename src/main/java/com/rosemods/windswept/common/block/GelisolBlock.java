@@ -10,9 +10,8 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SnowyDirtBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
 
+// TODO: FIX
 public class GelisolBlock extends SnowyDirtBlock implements BonemealableBlock {
     public GelisolBlock(Properties properties) {
         super(properties);
@@ -20,13 +19,13 @@ public class GelisolBlock extends SnowyDirtBlock implements BonemealableBlock {
 
     @Override
     public BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction action, boolean simulate) {
-        return action == ToolActions.SHOVEL_FLATTEN ? WindsweptBlocks.GELISOL_PATH.get().defaultBlockState() : null;
+        return action == ToolActions.SHOVEL_FLATTEN ? WindsweptBlocks.GELISOL_PATH.defaultBlockState() : null;
     }
 
     @Override
     public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean b) {
         BlockState above = levelReader.getBlockState(blockPos.above());
-        return above.canBeReplaced() && !above.is(WindsweptBlocks.GELISOL_GRASS.get());
+        return above.canBeReplaced() && !above.is(WindsweptBlocks.GELISOL_GRASS);
     }
 
     @Override
@@ -47,7 +46,7 @@ public class GelisolBlock extends SnowyDirtBlock implements BonemealableBlock {
             }
 
             if (level.getBlockState(blockPos).isAir() && level.getBlockState(blockPos.below()).is(this))
-                level.setBlock(blockPos, WindsweptBlocks.GELISOL_GRASS.get().defaultBlockState(), 3);
+                level.setBlock(blockPos, WindsweptBlocks.GELISOL_GRASS.defaultBlockState(), 3);
         }
 
     }

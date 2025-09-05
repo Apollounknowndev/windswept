@@ -35,7 +35,7 @@ public class ChestnutTrunkPlacer extends TrunkPlacer {
 
     @Override
     protected TrunkPlacerType<?> type() {
-        return WindsweptTrunkPlacers.CHESTNUT_TRUNK_PLACER.get();
+        return WindsweptTrunkPlacers.CHESTNUT_TRUNK_PLACER;
     }
 
     @Override
@@ -102,14 +102,14 @@ public class ChestnutTrunkPlacer extends TrunkPlacer {
                         this.placeLog(level, consumer, rand, pos.offset(x, -1, z), config);
                         grassCheck--;
 
-                        if (level.isStateAtPosition(pos.offset(x, -2, z), state -> state.canBeReplaced()) && WindsweptConfig.COMMON.roots.get())
+                        if (level.isStateAtPosition(pos.offset(x, -2, z), state -> state.canBeReplaced()) && WindsweptConfig.COMMON.roots)
                             consumer.accept(pos.offset(x, -2, z), Blocks.HANGING_ROOTS.defaultBlockState());
                     }
 
                     if (raisedX.contains(x) || raisedZ.contains(z) || rand.nextInt(32) == 0)
                         this.placeLog(level, consumer, rand, pos.offset(x, 1, z), config);
 
-                    if (level.isStateAtPosition(pos.offset(x, grassCheck, z), state -> state.is(Blocks.GRASS_BLOCK) || state.is(Blocks.PODZOL) || state.is(Blocks.MYCELIUM) || state.is(WindsweptBlocks.GELISOL.get())))
+                    if (level.isStateAtPosition(pos.offset(x, grassCheck, z), state -> state.is(Blocks.GRASS_BLOCK) || state.is(Blocks.PODZOL) || state.is(Blocks.MYCELIUM) || state.is(WindsweptBlocks.GELISOL)))
                         setDirtAt(level, consumer, rand, pos.offset(x, grassCheck, z), config);
                 }
 

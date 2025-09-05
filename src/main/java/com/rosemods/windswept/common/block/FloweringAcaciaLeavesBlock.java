@@ -8,15 +8,12 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class FloweringAcaciaLeavesBlock extends LeavesBlock {
     public FloweringAcaciaLeavesBlock(Properties properties) {
         super(properties);
     }
 
-    @OnlyIn(Dist.CLIENT)
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         super.animateTick(state, level, pos, random);
@@ -26,7 +23,7 @@ public class FloweringAcaciaLeavesBlock extends LeavesBlock {
             BlockState blockstate = level.getBlockState(blockpos);
 
             if (!isFaceFull(blockstate.getCollisionShape(level, blockpos), Direction.UP))
-                ParticleUtils.spawnParticleBelow(level, pos, random, WindsweptParticleTypes.ACACIA_LEAVES.get());
+                ParticleUtils.spawnParticleBelow(level, pos, random, WindsweptParticleTypes.ACACIA_LEAVES);
         }
     }
 

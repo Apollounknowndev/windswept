@@ -11,8 +11,6 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class HollyLeavesBlock extends LeavesBlock {
     private static final VoxelShape AABB = box(1f, 0f, 1f, 15f, 15f, 15f);
@@ -32,7 +30,6 @@ public class HollyLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public float getShadeBrightness(BlockState state, BlockGetter getter, BlockPos pos) {
         return .2f;
     }

@@ -1,43 +1,50 @@
 package com.rosemods.windswept.core.registry;
 
 import com.rosemods.windswept.core.Windswept;
-import com.rosemods.windswept.core.registry.util.EffectSubRegistryHelper;
-import com.teamabnormals.blueprint.core.util.DataUtil;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = Windswept.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class WindsweptEffects {
-    public static final EffectSubRegistryHelper HELPER = Windswept.REGISTRY_HELPER.getSubHelper(ForgeRegistries.MOB_EFFECTS);
-
     // Effects //
-    public static final RegistryObject<MobEffect> THORNS = HELPER.createEffect("thorns", MobEffectCategory.BENEFICIAL, 0x295230);
-    public static final RegistryObject<MobEffect> FROST_RESISTANCE = HELPER.createEffect("frost_resistance", MobEffectCategory.BENEFICIAL, 0x618cff);
-    //public static final RegistryObject<MobEffect> PLENTY = HELPER.createEffect("plenty", MobEffectCategory.BENEFICIAL, 0xe68834);
+    public static final MobEffect THORNS = register("thorns", MobEffectCategory.BENEFICIAL, 0x295230);
+    public static final MobEffect FROST_RESISTANCE = register("frost_resistance", MobEffectCategory.BENEFICIAL, 0x618cff);
 
     // Potions //
-    public static final RegistryObject<Potion> THORNS_POTION = HELPER.createPotion("thorns", THORNS, 3600, 0);
-    public static final RegistryObject<Potion> LONG_THORNS_POTION = HELPER.createPotion("long_thorns", THORNS, 9600, 0);
-    public static final RegistryObject<Potion> STRONG_THORNS_POTION = HELPER.createPotion("strong_thorns", THORNS, 1800, 1);
+    public static final Potion THORNS_POTION = register("thorns", THORNS, 3600, 0);
+    public static final Potion LONG_THORNS_POTION = register("long_thorns", THORNS, 9600, 0);
+    public static final Potion STRONG_THORNS_POTION = register("strong_thorns", THORNS, 1800, 1);
+    public static final Potion FROST_RESISTANCE_POTION = register("frost_resistance", FROST_RESISTANCE, 3600, 0);
+    public static final Potion LONG_FROST_RESISTANCE_POTION = register("long_frost_resistance", FROST_RESISTANCE, 9600, 0);
 
-    public static final RegistryObject<Potion> FROST_RESISTANCE_POTION = HELPER.createPotion("frost_resistance", FROST_RESISTANCE, 3600, 0);
-    public static final RegistryObject<Potion> LONG_FROST_RESISTANCE_POTION = HELPER.createPotion("long_frost_resistance", FROST_RESISTANCE, 9600, 0);
-
-    public static void registerPotionRecipes() {
-        DataUtil.addMix(Potions.AWKWARD, WindsweptBlocks.NIGHTSHADE.get().asItem(), Potions.NIGHT_VISION);
-
-        DataUtil.addMix(Potions.AWKWARD, WindsweptItems.HOLLY_BERRIES.get(), THORNS_POTION.get());
-        DataUtil.addMix(THORNS_POTION.get(), Items.REDSTONE, LONG_THORNS_POTION.get());
-        DataUtil.addMix(THORNS_POTION.get(), Items.GLOWSTONE_DUST, STRONG_THORNS_POTION.get());
-
-        DataUtil.addMix(Potions.AWKWARD, WindsweptItems.FROZEN_BRANCH.get(), FROST_RESISTANCE_POTION.get());
-        DataUtil.addMix(FROST_RESISTANCE_POTION.get(), Items.REDSTONE, LONG_FROST_RESISTANCE_POTION.get());
+    private static MobEffect register(String name, MobEffectCategory category, int color) {
+        return Registry.register(BuiltInRegistries.MOB_EFFECT, Windswept.id(name), new WindsweptEffect(category, color));
     }
 
+    private static Potion register(String name, MobEffect effect, int duration, int amplifier) {
+        return Registry.register(BuiltInRegistries.POTION, Windswept.id(name), new Potion(new MobEffectInstance(effect, duration, amplifier)));
+    }
+
+    public static void init() {
+        PotionBrewing.addMix(Potions.AWKWARD, WindsweptBlocks.NIGHTSHADE.asItem(), Potions.NIGHT_VISION);
+
+        PotionBrewing.addMix(Potions.AWKWARD, WindsweptItems.HOLLY_BERRIES, THORNS_POTION);
+        PotionBrewing.addMix(THORNS_POTION, Items.REDSTONE, LONG_THORNS_POTION);
+        PotionBrewing.addMix(THORNS_POTION, Items.GLOWSTONE_DUST, STRONG_THORNS_POTION);
+
+        PotionBrewing.addMix(Potions.AWKWARD, WindsweptItems.FROZEN_BRANCH, FROST_RESISTANCE_POTION);
+        PotionBrewing.addMix(FROST_RESISTANCE_POTION, Items.REDSTONE, LONG_FROST_RESISTANCE_POTION);
+    }
+
+    private static class WindsweptEffect extends MobEffect {
+        public WindsweptEffect(MobEffectCategory category, int color) {
+            super(category, color);
+        }
+    }
 }

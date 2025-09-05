@@ -16,7 +16,7 @@ public class IceBlockMixin {
     @Inject(method = "melt", at = @At("HEAD"), cancellable = true)
     private void melt(BlockState state, Level level, BlockPos pos, CallbackInfo info) {
         BlockPos.betweenClosedStream(new AABB(pos).inflate(2)).forEach(blockPos -> {
-            if (level.getBlockState(blockPos).is(WindsweptBlocks.ICE_LANTERN.get()))
+            if (level.getBlockState(blockPos).is(WindsweptBlocks.ICE_LANTERN))
                 info.cancel();
         });
     }

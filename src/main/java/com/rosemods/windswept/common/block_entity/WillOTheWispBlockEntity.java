@@ -14,7 +14,7 @@ import net.minecraft.world.phys.AABB;
 
 public class WillOTheWispBlockEntity extends BlockEntity {
     public WillOTheWispBlockEntity(BlockPos pos, BlockState state) {
-        super(WindsweptBlockEntities.WILL_O_THE_WISP.get(), pos, state);
+        super(WindsweptBlockEntities.WILL_O_THE_WISP, pos, state);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, WillOTheWispBlockEntity blockEntity) {
@@ -37,7 +37,7 @@ public class WillOTheWispBlockEntity extends BlockEntity {
         BlockPos.betweenClosedStream(aabb).forEach(blockPos -> {
             BlockState blockState = level.getBlockState(blockPos);
 
-            if (blockState.is(WindsweptBlocks.WILL_O_THE_WISP.get())
+            if (blockState.is(WindsweptBlocks.WILL_O_THE_WISP)
                     && blockState.getValue(HorizontalDirectionalBlock.FACING) != direction && level.getBlockState(blockPos.relative(direction)).isAir())
                 level.setBlockAndUpdate(blockPos, blockState.setValue(HorizontalDirectionalBlock.FACING, direction));
         });

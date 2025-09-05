@@ -21,7 +21,7 @@ public class DrownedMixin extends Zombie {
     @Inject(method = "populateDefaultEquipmentSlots", at = @At("TAIL"))
     public void populateDefaultEquipmentSlots(RandomSource rand, DifficultyInstance difficulty, CallbackInfo info) {
         if (rand.nextFloat() < .1f) {
-            this.setItemSlot(EquipmentSlot.HEAD, WindsweptItems.WOODEN_BUCKET.get().getDefaultInstance());
+            this.setItemSlot(EquipmentSlot.HEAD, WindsweptItems.WOODEN_BUCKET.getDefaultInstance());
             this.armorDropChances[EquipmentSlot.HEAD.getIndex()] = .5f;
         }
     }

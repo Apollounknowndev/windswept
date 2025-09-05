@@ -16,8 +16,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
@@ -49,10 +47,9 @@ public class NightFairyLightBlock extends PineconeBlock implements EntityBlock {
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return !level.isClientSide && level.dimensionType().hasSkyLight() ? BaseEntityBlock.createTickerHelper(type, WindsweptBlockEntities.NIGHT_FAIRY_LIGHT.get(), NightFairyLightBlockEntity::tick) : null;
+        return !level.isClientSide && level.dimensionType().hasSkyLight() ? BaseEntityBlock.createTickerHelper(type, WindsweptBlockEntities.NIGHT_FAIRY_LIGHT, NightFairyLightBlockEntity::tick) : null;
     }
 
-    @OnlyIn(Dist.CLIENT)
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         if (state.getValue(LIT))

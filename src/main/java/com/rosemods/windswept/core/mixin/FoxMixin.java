@@ -26,9 +26,9 @@ public class FoxMixin {
         Fox fox = (Fox) (Object) this;
 
         if (rand.nextInt(12) == 0)
-            fox.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(WindsweptBlocks.FOXGLOVE.get()));
+            fox.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(WindsweptBlocks.FOXGLOVE));
         else if (fox.getVariant() == Fox.Type.SNOW && rand.nextInt(4) == 0)
-            fox.setItemInHand(InteractionHand.MAIN_HAND, WindsweptItems.WILD_BERRIES.get().getDefaultInstance());
+            fox.setItemInHand(InteractionHand.MAIN_HAND, WindsweptItems.WILD_BERRIES.getDefaultInstance());
     }
 
     @Inject(method = "finalizeSpawn", at = @At("RETURN"))

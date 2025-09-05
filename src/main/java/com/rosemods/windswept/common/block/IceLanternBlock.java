@@ -19,8 +19,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class IceLanternBlock extends Block implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
@@ -38,7 +36,6 @@ public class IceLanternBlock extends Block implements SimpleWaterloggedBlock {
         return state.getValue(FACING) == Direction.UP ? SHAPE : HANGING;
     }
 
-    @OnlyIn(Dist.CLIENT)
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
         NightshadeFlowerBlock.particles(level, pos, rand);

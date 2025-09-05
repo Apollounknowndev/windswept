@@ -14,12 +14,12 @@ public class MimosaDecorator extends TreeDecorator {
 
     @Override
     protected TreeDecoratorType<?> type() {
-        return WindsweptTreeDecorators.MIMOSA_DECORATOR.get();
+        return WindsweptTreeDecorators.MIMOSA_DECORATOR;
     }
 
     @Override
     public void place(Context context) {
-        BlockState state = WindsweptBlocks.MIMOSA.get().defaultBlockState();
+        BlockState state = WindsweptBlocks.MIMOSA.defaultBlockState();
 
         for (BlockPos pos : context.leaves())
             if (context.isAir(pos.above()) && context.random().nextInt(3) == 0)

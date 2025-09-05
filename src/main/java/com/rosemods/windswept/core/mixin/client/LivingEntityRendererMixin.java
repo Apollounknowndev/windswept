@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+// TODO: FIX
 @Mixin(LivingEntityRenderer.class)
 public class LivingEntityRendererMixin {
     @Inject(method = "isShaking", at = @At("HEAD"), cancellable = true)

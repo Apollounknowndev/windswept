@@ -39,7 +39,7 @@ public abstract class SnowyDirtBlockMixin extends Block {
 
     @Unique
     private static boolean isSnowy(BlockState state, LevelAccessor level, BlockPos pos) {
-        return (state.is(BlockTags.SNOW) && canSupportCenter(level, pos.above(), Direction.DOWN)) || (state.is(WindsweptBlocks.SNOWY_SPROUTS.get()) || state.is(WindsweptBlocks.SNOWDROP.get()));
+        return (state.is(BlockTags.SNOW) && canSupportCenter(level, pos.above(), Direction.DOWN)) || (state.is(WindsweptBlocks.SNOWY_SPROUTS) || state.is(WindsweptBlocks.SNOWDROP));
     }
 
 }

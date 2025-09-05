@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.WorldGenLevel;
@@ -14,12 +13,10 @@ import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.TallFlowerBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.function.Supplier;
-
 public class RoseFlowerBlock extends FlowerBlock implements BonemealableBlock {
-    private final Supplier<Block> tall;
+    private final Block tall;
 
-    public RoseFlowerBlock(Supplier<Block> tall, Supplier<MobEffect> stewEffect, int stewEffectDuration, Properties properties) {
+    public RoseFlowerBlock(Block tall, MobEffect stewEffect, int stewEffectDuration, Properties properties) {
         super(stewEffect, stewEffectDuration, properties);
         this.tall = tall;
     }
@@ -29,7 +26,7 @@ public class RoseFlowerBlock extends FlowerBlock implements BonemealableBlock {
     }
 
     public Block getBushVariant() {
-        return this.tall.get();
+        return this.tall;
     }
 
     @Override
@@ -44,7 +41,7 @@ public class RoseFlowerBlock extends FlowerBlock implements BonemealableBlock {
 
     @Override
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
-        grow(level, pos, this.tall.get());
+        grow(level, pos, this.tall);
     }
 
 }

@@ -10,6 +10,7 @@ import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
 
+// TODO: FIX
 public class FrostbiterModel extends EndimatorEntityModel<Frostbiter> implements HeadedModel {
     private final ModelPart body;
     private final ModelPart head;

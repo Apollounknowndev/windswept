@@ -8,18 +8,13 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.function.Supplier;
 
 public class NightshadeFlowerBlock extends FlowerBlock {
 
-    public NightshadeFlowerBlock(Supplier<MobEffect> stewEffect, int stewEffectDuration, Properties properties) {
+    public NightshadeFlowerBlock(MobEffect stewEffect, int stewEffectDuration, Properties properties) {
         super(stewEffect, stewEffectDuration, properties);
     }
 
-    @OnlyIn(Dist.CLIENT)
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
         particles(level, pos, rand);

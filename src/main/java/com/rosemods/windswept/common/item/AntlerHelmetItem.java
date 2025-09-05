@@ -24,6 +24,7 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import java.util.UUID;
 import java.util.function.Consumer;
 
+// TODO: FIX
 public class AntlerHelmetItem extends ArmorItem {
     private static final UUID SPRINT_DAMAGE_UUID = UUID.fromString("e97abdf0-cd94-45f4-8cd4-581a0a75515f");
     private static final UUID ATTACK_DAMAGE_UUID = UUID.fromString("cd559dfd-c166-4043-b9eb-a69e85abb04b");

@@ -20,7 +20,7 @@ public interface SimpleWaterloggedBlockMixin extends IWoodenBucketPickupBlock {
 
     @Override
     default Item getWoodenBucketItem(BlockState state) {
-        return WindsweptItems.WOODEN_WATER_BUCKET.get();
+        return WindsweptItems.WOODEN_WATER_BUCKET;
     }
 
 }

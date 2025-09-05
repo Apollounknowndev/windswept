@@ -5,6 +5,7 @@ import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.state.BlockState;
 
+// TODO: FIX
 public class WindsweptCompressedBlock extends BlueprintDirectionalBlock {
     public WindsweptCompressedBlock(Properties properties) {
         super(properties);

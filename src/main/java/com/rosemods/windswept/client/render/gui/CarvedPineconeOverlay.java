@@ -5,14 +5,12 @@ import com.rosemods.windswept.core.registry.WindsweptBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
-@OnlyIn(Dist.CLIENT)
+// TODO: FIX
 public class CarvedPineconeOverlay implements IGuiOverlay {
-    private static final ResourceLocation PINECONE_BLUR_LOCATION = Windswept.location("textures/misc/pineconeblur.png");
+    private static final ResourceLocation PINECONE_BLUR_LOCATION = Windswept.id("textures/misc/pineconeblur.png");
 
     @Override
     public void render(ForgeGui forgeGui, GuiGraphics guiGraphics, float v, int i, int i1) {

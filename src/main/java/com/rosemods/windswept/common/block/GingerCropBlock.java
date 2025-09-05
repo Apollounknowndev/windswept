@@ -34,7 +34,7 @@ public class GingerCropBlock extends CropBlock {
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return WindsweptItems.GINGER_ROOT.get();
+        return WindsweptItems.GINGER_ROOT;
     }
 
     @Override

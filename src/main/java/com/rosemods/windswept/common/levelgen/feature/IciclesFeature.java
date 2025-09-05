@@ -14,6 +14,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
 
+// TODO: FIX
 public class IciclesFeature extends Feature<NoneFeatureConfiguration> {
 
     public IciclesFeature() {
@@ -24,10 +25,10 @@ public class IciclesFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         BlockPos origin = context.origin();
         WorldGenLevel level = context.level();
-        BlockState state = WindsweptBlocks.ICICLES.get().defaultBlockState();
-        BlockState top = WindsweptBlocks.ICICLES.get().defaultBlockState().setValue(IciclesBlock.STATE, IciclesBlock.IcicleStates.TOP);
-        BlockState bottom = WindsweptBlocks.ICICLES.get().defaultBlockState().setValue(IciclesBlock.STATE, IciclesBlock.IcicleStates.BOTTOM);
-        BlockState block = WindsweptBlocks.ICICLE_BLOCK.get().defaultBlockState();
+        BlockState state = WindsweptBlocks.ICICLES.defaultBlockState();
+        BlockState top = WindsweptBlocks.ICICLES.defaultBlockState().setValue(IciclesBlock.STATE, IciclesBlock.IcicleStates.TOP);
+        BlockState bottom = WindsweptBlocks.ICICLES.defaultBlockState().setValue(IciclesBlock.STATE, IciclesBlock.IcicleStates.BOTTOM);
+        BlockState block = WindsweptBlocks.ICICLE_BLOCK.defaultBlockState();
         RandomSource rand = context.random();
         boolean generated = false;
 
@@ -58,7 +59,7 @@ public class IciclesFeature extends Feature<NoneFeatureConfiguration> {
 
     private static boolean canPlaceOn(WorldGenLevel level, BlockPos pos) {
         BlockState state = level.getBlockState(pos);
-        return (state.is(BlockTags.ICE) && !state.is(Blocks.ICE) && !state.is(WindsweptBlocks.ICICLES.get())) || state.is(Tags.Blocks.STONE);
+        return (state.is(BlockTags.ICE) && !state.is(Blocks.ICE) && !state.is(WindsweptBlocks.ICICLES)) || state.is(Tags.Blocks.STONE);
     }
 
 }

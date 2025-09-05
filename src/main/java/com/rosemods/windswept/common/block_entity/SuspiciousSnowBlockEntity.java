@@ -13,6 +13,6 @@ public class SuspiciousSnowBlockEntity extends BrushableBlockEntity {
 
     @Override
     public BlockEntityType<?> getType() {
-        return WindsweptBlockEntities.SUSPICIOUS_SNOW.get();
+        return WindsweptBlockEntities.SUSPICIOUS_SNOW;
     }
 }

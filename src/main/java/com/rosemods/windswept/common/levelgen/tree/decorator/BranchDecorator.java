@@ -19,6 +19,7 @@ import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorTy
 
 import java.util.List;
 
+// TODO: FIX
 public class BranchDecorator extends TreeDecorator {
     public static final Codec<BranchDecorator> CODEC = RecordCodecBuilder.create(i -> i
             .group(SimpleStateProvider.CODEC.fieldOf("state").forGetter(bd -> bd.state), Codec.intRange(0, 32).fieldOf("minHeight").forGetter(bd -> bd.minHeight))
@@ -33,7 +34,7 @@ public class BranchDecorator extends TreeDecorator {
 
     @Override
     protected TreeDecoratorType<?> type() {
-        return WindsweptTreeDecorators.BRANCH_DECORATOR.get();
+        return WindsweptTreeDecorators.BRANCH_DECORATOR;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class BranchDecorator extends TreeDecorator {
                 BlockPos blockpos = pos.offset(direction.getOpposite().getStepX(), 0, direction.getOpposite().getStepZ());
                 BlockState blockState = this.state.getState(rand, blockpos).setValue(RotatedPillarBlock.AXIS, direction.getAxis());
 
-                if (blockState.is(Blocks.BIRCH_LOG) && !WindsweptConfig.COMMON.birchBranches.get())
+                if (blockState.is(Blocks.BIRCH_LOG) && !WindsweptConfig.COMMON.birchBranches)
                     return;
                 else if (context.isAir(blockpos) && context.isAir(blockpos.below()) && context.isAir(blockpos.above())) {
                     context.setBlock(blockpos, blockState);

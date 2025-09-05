@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.extensions.IForgeBlock;
 import org.spongepowered.asm.mixin.Mixin;
 
+// TODO: FIX
 @Mixin(Block.class)
 public abstract class BlockMixin implements IForgeBlock {
     @Override
