@@ -1,17 +1,13 @@
 package com.rosemods.windswept.core.mixin;
 
 import com.rosemods.windswept.common.block.IWoodenBucketPickupBlock;
-import com.rosemods.windswept.core.other.WindsweptConstants;
 import com.rosemods.windswept.core.registry.WindsweptItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(LiquidBlock.class)

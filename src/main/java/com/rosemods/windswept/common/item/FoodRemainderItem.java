@@ -14,16 +14,16 @@ import net.minecraft.world.level.Level;
 import java.util.function.Supplier;
 
 public class FoodRemainderItem extends Item {
-    private final Supplier<ItemLike> remainder;
+    private final ItemLike remainder;
 
-    public FoodRemainderItem(Supplier<ItemLike> remainder, Properties properties) {
+    public FoodRemainderItem(ItemLike remainder, Properties properties) {
         super(properties);
         this.remainder = remainder;
     }
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        ItemStack remainder = this.remainder.get().asItem().getDefaultInstance();
+        ItemStack remainder = this.remainder.asItem().getDefaultInstance();
         entity.eat(level, stack);
 
         if (entity instanceof ServerPlayer player) {

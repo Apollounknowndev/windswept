@@ -34,15 +34,17 @@ import java.util.function.Supplier;
 
 // TODO: FIX
 public class WoodenBucketItem extends BucketItem {
+    protected final Fluid fluid;
 
-    public WoodenBucketItem(Supplier<? extends Fluid> supplier, Properties builder) {
-        super(supplier, builder);
+    public WoodenBucketItem(Fluid fluid, Properties builder) {
+        super(fluid, builder.durability(WindsweptConfig.COMMON.woodenBucketDurabilty.get()));
+        this.fluid = fluid;
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
-        BlockHitResult blockhitresult = getPlayerPOVHitResult(level, player, this.getFluid() == Fluids.EMPTY ? ClipContext.Fluid.SOURCE_ONLY : ClipContext.Fluid.NONE);
+        BlockHitResult blockhitresult = getPlayerPOVHitResult(level, player, this.fluid == Fluids.EMPTY ? ClipContext.Fluid.SOURCE_ONLY : ClipContext.Fluid.NONE);
 
         if (blockhitresult.getType() == HitResult.Type.BLOCK) {
             BlockPos blockpos = blockhitresult.getBlockPos();
@@ -50,7 +52,7 @@ public class WoodenBucketItem extends BucketItem {
             BlockPos blockpos1 = blockpos.relative(direction);
 
             if (level.mayInteract(player, blockpos) && player.mayUseItemAt(blockpos1, direction, itemstack)) {
-                if (this.getFluid() == Fluids.EMPTY) {
+                if (this.fluid == Fluids.EMPTY) {
                     BlockState state = level.getBlockState(blockpos);
 
                     if (state.getBlock() instanceof IWoodenBucketPickupBlock pickup && pickup.canPickupFromWoodenBucket(level, blockpos, state)) {
@@ -88,17 +90,12 @@ public class WoodenBucketItem extends BucketItem {
     }
 
     public boolean isEmpty() {
-        return this.getFluid() == Fluids.EMPTY;
+        return this.fluid == Fluids.EMPTY;
     }
 
     @Override
-    public int getMaxDamage(ItemStack stack) {
-        return WindsweptConfig.COMMON.woodenBucketDurabilty.get();
-    }
-
-    @Override
-    public boolean isRepairable(ItemStack stack) {
-        return this.getFluid() == Fluids.EMPTY;
+    public boolean isRepairable() {
+        return this.fluid == Fluids.EMPTY;
     }
 
     @Override

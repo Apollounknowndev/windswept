@@ -1,6 +1,5 @@
 package com.rosemods.windswept.common.item;
 
-import com.teamabnormals.blueprint.core.util.PropertyUtil;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -12,23 +11,22 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.HoneyBottleItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
-import java.util.function.Supplier;
-
 // TODO: FIX
 public class DrinkableBottleItem extends HoneyBottleItem {
-    private final Supplier<SoundEvent> drinkSound;
+    private final SoundEvent drinkSound;
 
-    public DrinkableBottleItem(Supplier<SoundEvent> drinkSound, FoodProperties food) {
-        super(PropertyUtil.food(food).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE));
+    public DrinkableBottleItem(SoundEvent drinkSound, FoodProperties food) {
+        super(new Item.Properties().food(food).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE));
         this.drinkSound = drinkSound;
     }
 
     public DrinkableBottleItem(FoodProperties food) {
-        this(() -> SoundEvents.GENERIC_DRINK, food);
+        this(SoundEvents.GENERIC_DRINK, food);
     }
 
     @Override
@@ -54,18 +52,18 @@ public class DrinkableBottleItem extends HoneyBottleItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        return this.getFoodProperties(player.getItemInHand(hand), player).canAlwaysEat() || player.canEat(false) ? super.use(level, player, hand)
+        return this.getFoodProperties().canAlwaysEat() || player.canEat(false) ? super.use(level, player, hand)
                 : InteractionResultHolder.fail(player.getItemInHand(hand));
     }
 
     @Override
     public SoundEvent getDrinkingSound() {
-        return this.drinkSound.get();
+        return this.drinkSound;
     }
 
     @Override
     public SoundEvent getEatingSound() {
-        return this.drinkSound.get();
+        return this.drinkSound;
     }
 
     @Override

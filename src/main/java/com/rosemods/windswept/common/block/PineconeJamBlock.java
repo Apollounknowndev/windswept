@@ -19,7 +19,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.registries.ForgeRegistries;
 
 // TODO: FIX
 public class PineconeJamBlock extends HalfTransparentBlock implements SimpleWaterloggedBlock {

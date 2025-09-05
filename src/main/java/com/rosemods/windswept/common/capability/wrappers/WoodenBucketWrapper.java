@@ -2,10 +2,8 @@ package com.rosemods.windswept.common.capability.wrappers;
 
 import com.rosemods.windswept.common.item.WoodenBucketItem;
 import com.rosemods.windswept.common.item.WoodenMilkBucketItem;
-import com.rosemods.windswept.core.other.WindsweptConstants;
 import com.rosemods.windswept.core.registry.WindsweptItems;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
@@ -128,30 +126,12 @@ public class WoodenBucketWrapper implements IFluidHandlerItem, ICapabilityProvid
 
     private static Item getBucketFromFluid(Fluid fluid) {
         if (fluid == Fluids.WATER)
-            return WindsweptItems.WOODEN_WATER_BUCKET.get();
-        else if (ForgeMod.MILK.isPresent() && fluid == ForgeMod.MILK.get())
-            return WindsweptItems.WOODEN_MILK_BUCKET.get();
-        else if (ModList.get().isLoaded("create")) {
-            ResourceLocation location = ForgeRegistries.FLUIDS.getKey(fluid);
-
-            if (location.equals(WindsweptConstants.HONEY))
-                return WindsweptItems.WOODEN_HONEY_BUCKET.get();
-            else if (location.equals(WindsweptConstants.CHOCOLATE))
-                return WindsweptItems.WOODEN_CHOCOLATE_BUCKET.get();
-        }
-
+            return WindsweptItems.WOODEN_WATER_BUCKET;
         return null;
     }
 
     private static boolean canFillFromFluid(Fluid fluid) {
-        if (ModList.get().isLoaded("create")) {
-            ResourceLocation location = ForgeRegistries.FLUIDS.getKey(fluid);
-
-            if (location.equals(WindsweptConstants.HONEY) || location.equals(WindsweptConstants.CHOCOLATE))
-                return true;
-        }
-
-        return fluid == Fluids.WATER || (ForgeMod.MILK.isPresent() && fluid == ForgeMod.MILK.get());
+        return fluid == Fluids.WATER;
     }
 
 }
