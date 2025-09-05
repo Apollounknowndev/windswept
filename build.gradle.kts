@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm") version "2.1.0"
-    id("earth.terrarium.cloche") version "0.13.2"
+    id("earth.terrarium.cloche") version "0.11.0"
 }
 
 repositories {
@@ -39,18 +39,17 @@ cloche {
     }
 
     singleTarget {
-        forge {
-            loaderVersion = "47.4.0"
+        fabric {
+            loaderVersion = "0.16.13"
             minecraftVersion = "1.20.1"
             mixins.from(file("src/main/windswept.mixins.json"))
-            accessWideners.from(file("src/main/windswept.accesswidener"))
 
             dependencies {
-                compileOnly("org.spongepowered:mixin:0.8.3")
-                modRuntimeOnly("maven.modrinth:lithostitched:1.4.11-forge-1.20")
-                implementation("com.teamabnormals:blueprint:1.20.1-7.1.3")
+                fabricApi("0.92.6")
+                modRuntimeOnly("maven.modrinth:lithostitched:1.4.11-fabric-1.20")
             }
 
+            includedClient()
             runs {
                 client()
                 server()
@@ -59,9 +58,13 @@ cloche {
             metadata {
                 dependencies {
                     dependency {
-                        modId = "blueprint"
+                        modId = "lithostitched"
                         required = true
                     }
+                }
+
+                entrypoint("main") {
+                    value = "com.rosemods.windswept.core.WindsweptFabric"
                 }
             }
         }
