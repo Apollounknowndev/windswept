@@ -79,7 +79,6 @@ public class Windswept {
         gen.addProvider(client, new WindsweptModelProvider(event));
         gen.addProvider(client, new WindsweptSplashProvider(event));
         gen.addProvider(client, new WindsweptParticleProvider(event));
-        gen.addProvider(client, new WindsweptSpriteSourceProvider(event));
 
         WindsweptDatapackProvider dataPack;
         WindsweptBlockTagProvider blockTags;

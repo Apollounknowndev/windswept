@@ -10,13 +10,9 @@ import com.rosemods.windswept.core.registry.WindsweptPaintingVariants;
 import com.rosemods.windswept.core.registry.datapack.WindsweptBiomes;
 import com.rosemods.windswept.core.registry.datapack.WindsweptDamageTypes;
 import com.rosemods.windswept.core.registry.datapack.WindsweptTrimMaterials;
-import com.rosemods.windswept.integration.jei.WindsweptPlugin;
 import com.teamabnormals.blueprint.common.block.sign.BlueprintStandingSignBlock;
 import com.teamabnormals.blueprint.common.block.sign.BlueprintWallSignBlock;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
@@ -139,20 +135,6 @@ public class WindsweptLangProvider extends LanguageProvider {
         this.translateBiome(WindsweptBiomes.TUNDRA);
         this.translateBiome(WindsweptBiomes.FLOWERING_SAVANNA);
 
-        // JEI Info //
-        this.jeiInfo(FROZEN_BRANCH, "Tamed Frostbiters will shed their antlers.");
-        this.jeiInfo(ELDER_FEATHER, "Elder Feathers can be found via Archaeology.");
-        this.jeiInfo(MUSIC_DISC_RAIN, "Dropped by a Drowned if killed by a Skeleton.");
-        this.jeiInfo(MUSIC_DISC_SNOW, "Dropped by a Chilled if killed by a Skeleton.");
-        this.jeiInfo(MUSIC_DISC_BUMBLEBEE, "Sometimes dropped when shearing a Beehive for Honeycombs.");
-        this.jeiInfo(WILD_BERRIES, "Wild berries are the fruit of the wild berry bush. The plant is made unique by their ability to grow in snowy conditions. The berry can be cultivated for a juice that can regenerate health, and can be frozen to a popsicle that grants resistance to frost.");
-        this.jeiInfo(NIGHTSHADE, "Nightshades are mystical flowers found rarely growing in patches from the roots of trees. The flower emits a subtle white light.");
-        this.jeiInfo(CARVED_PINECONE_BLOCK, "The face of the Carved Pinecone creates a single note randomly as wind passes through them, the note produced is deeper depending on how high they are stacked on top of pinecone blocks. \n(Is activated through random tick, right clicking, or redstone)");
-        this.jeiInfo(WILL_O_THE_WISP, "Will watch you when your back is turned.");
-        this.jeiInfo(ICE_LANTERN, "The Ice Lantern emits a light incapable of melting Ice and Snow.");
-        this.jeiInfo(WOODEN_BUCKET, "Wooden buckets are easily craft-able; but it comes at a cost to their strength. Durability is taken when fluids exit the bucket.");
-        this.jeiInfo(SNOW_BOOTS, "Snow boots allow for faster traversal through snow, and grants the wearer the ability to walk on Powder Snow. The leather can be dyed.");
-
         // Auto Translation //
         this.translateRegistry(ForgeRegistries.BLOCKS, Block::getDescriptionId);
         this.translateRegistry(ForgeRegistries.ITEMS, Item::getDescriptionId);
@@ -224,10 +206,6 @@ public class WindsweptLangProvider extends LanguageProvider {
 
         for (DyeColor dye : DyeColor.values())
             this.add("block.minecraft.banner." + Windswept.MOD_ID + "." + name + "." + dye.getName(), toUpper(dye.getName()) + " " + desc);
-    }
-
-    private void jeiInfo(Supplier<? extends ItemLike> item, String desc) {
-        this.add(WindsweptPlugin.getDesc(item), desc);
     }
 
     private void translateDamageType(ResourceKey<DamageType> source, Function<String, String> death, BiFunction<String, String, String> killed) {

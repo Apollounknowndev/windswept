@@ -2,7 +2,6 @@ package com.rosemods.windswept.core.other;
 
 import com.rosemods.windswept.common.item.WoodenBucketItem;
 import com.rosemods.windswept.core.registry.WindsweptItems;
-import com.rosemods.windswept.integration.neapolitan.WindsweptMilkCauldronInteractions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.sounds.SoundEvent;
@@ -21,7 +20,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraftforge.fml.ModList;
 
 public final class WindsweptCauldronInteractions {
 
@@ -33,9 +31,6 @@ public final class WindsweptCauldronInteractions {
         CauldronInteraction.EMPTY.put(WindsweptItems.WOODEN_POWDER_SNOW_BUCKET.get(), WindsweptCauldronInteractions::fillSnowCauldron); // fill empty cauldron with snow
         CauldronInteraction.POWDER_SNOW.put(WindsweptItems.WOODEN_POWDER_SNOW_BUCKET.get(), WindsweptCauldronInteractions::fillSnowCauldron); // fill snow cauldron to max
         CauldronInteraction.WATER.put(WindsweptItems.SNOW_BOOTS.get(), CauldronInteraction.DYED_ITEM); // snow boots
-
-        if (ModList.get().isLoaded("neapolitan")) // neapolitan milk cauldrons
-            WindsweptMilkCauldronInteractions.registerCauldronInteractions();
     }
 
     // Fill //
