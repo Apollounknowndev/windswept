@@ -1,6 +1,7 @@
 package com.rosemods.windswept.core;
 
 import com.rosemods.windswept.core.other.*;
+import com.rosemods.windswept.core.other.events.WindsweptTradeEvents;
 import com.rosemods.windswept.core.registry.*;
 import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
 import net.minecraft.resources.ResourceLocation;
@@ -29,6 +30,7 @@ public class Windswept {
         WindsweptTrunkPlacers.init();
 
 
+        WindsweptTradeEvents.registerTrades();
         WindsweptCreativeTabs.setupTabEditors();
         WindsweptVillagerTypes.registerVillagerTypes();
         WindsweptBlockInfo.registerCompostables();

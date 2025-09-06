@@ -1,60 +1,26 @@
 package com.rosemods.windswept.core.other.events;
 
-import com.rosemods.windswept.common.entity.Chilled;
-import com.rosemods.windswept.common.item.FeatherCloakItem;
-import com.rosemods.windswept.common.item.SnowBootsItem;
-import com.rosemods.windswept.common.item.WoodenMilkBucketItem;
-import com.rosemods.windswept.core.Windswept;
-import com.rosemods.windswept.core.WindsweptConfig;
-import com.rosemods.windswept.core.other.WindsweptEntityData;
-import com.rosemods.windswept.core.other.tags.WindsweptEntityTypeTags;
 import com.rosemods.windswept.core.registry.WindsweptEffects;
-import com.rosemods.windswept.core.registry.WindsweptEntityTypes;
-import com.rosemods.windswept.core.registry.WindsweptItems;
-import com.teamabnormals.blueprint.common.world.storage.tracking.IDataManager;
-import com.teamabnormals.blueprint.common.world.storage.tracking.TrackedData;
-import com.teamabnormals.blueprint.core.other.tags.BlueprintEntityTypeTags;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Rabbit;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.ThornsEnchantment;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.MobSpawnEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import java.util.List;
 
-@EventBusSubscriber(modid = Windswept.MOD_ID)
 public class WindsweptEntityEvents {
     private static final List<MobSpawnType> NATURAL_SPAWNS = List.of(MobSpawnType.NATURAL, MobSpawnType.CHUNK_GENERATION, MobSpawnType.PATROL, MobSpawnType.REINFORCEMENT, MobSpawnType.JOCKEY);
 
-    @SubscribeEvent
-    public static void onEntityHurt(LivingHurtEvent event) {
-        LivingEntity entity = event.getEntity();
-        DamageSource source = event.getSource();
+    public static void onEntityHurt(LivingEntity entity, DamageSource source) {
+
         Entity attacker = source.getEntity();
 
         if (attacker == null || entity == null)
             return;
 
         // thorns damage
-        if (entity.hasEffect(WindsweptEffects.THORNS.get())) {
-            int amplifier = entity.getEffect(WindsweptEffects.THORNS.get()).getAmplifier() + 1;
+        if (entity.hasEffect(WindsweptEffects.THORNS)) {
+            int amplifier = entity.getEffect(WindsweptEffects.THORNS).getAmplifier() + 1;
             RandomSource rand = entity.getRandom();
 
             if (ThornsEnchantment.shouldHit(amplifier, rand))
@@ -62,8 +28,7 @@ public class WindsweptEntityEvents {
         }
 
     }
-
-    @SubscribeEvent
+    /*
     public static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
         ItemStack stack = event.getItemStack();
         Entity target = event.getTarget();
@@ -166,6 +131,6 @@ public class WindsweptEntityEvents {
 
     private static void ammendData(IDataManager data, TrackedData<Integer> tracked, int change) {
         data.setValue(tracked, data.getValue(tracked) + change);
-    }
+    }*/
 
 }

@@ -17,8 +17,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PowderSnowBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -34,7 +32,7 @@ public class PowderSnowBlockMixin extends Block implements IWoodenBucketPickupBl
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
-        if (WindsweptConfig.CLIENT.powderSnowParticles && rand.nextInt(16) == 0) {
+        if (WindsweptConfig.CLIENT.powderSnowParticles.get() && rand.nextInt(16) == 0) {
             BlockState below = level.getBlockState(pos.below());
             if (below.isAir() || below.is(BlockTags.FIRE) || below.canBeReplaced()) {
                 double d0 = (double) pos.getX() + rand.nextDouble();

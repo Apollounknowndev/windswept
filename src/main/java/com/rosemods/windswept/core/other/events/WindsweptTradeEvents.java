@@ -1,60 +1,41 @@
 package com.rosemods.windswept.core.other.events;
 
-import com.google.common.collect.ImmutableMap;
-import com.rosemods.windswept.core.Windswept;
 import com.rosemods.windswept.core.registry.WindsweptBlocks;
 import com.rosemods.windswept.core.registry.WindsweptItems;
-import com.teamabnormals.blueprint.core.util.TradeUtil;
-import com.teamabnormals.blueprint.core.util.TradeUtil.BlueprintTrade;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.npc.VillagerTrades;
-import net.minecraft.world.entity.npc.VillagerType;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraftforge.event.village.VillagerTradesEvent;
-import net.minecraftforge.event.village.WandererTradesEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraft.world.entity.npc.VillagerTrades.ItemsForEmeralds;
 
-import java.util.HashMap;
-
-@EventBusSubscriber(modid = Windswept.MOD_ID)
 public class WindsweptTradeEvents {
 
-    @SubscribeEvent
-    public static void wandererTrades(WandererTradesEvent event) {
-        TradeUtil.addWandererTrades(event,
-                new BlueprintTrade(5, WindsweptBlocks.HOLLY_SAPLING.get().asItem(), 1, 8, 1),
-                new BlueprintTrade(5, WindsweptBlocks.CHESTNUT_SAPLING.get().asItem(), 1, 8, 1),
-                new BlueprintTrade(5, WindsweptBlocks.PINE_SAPLING.get().asItem(), 1, 8, 1),
-                new BlueprintTrade(1, WindsweptItems.WILD_BERRIES.get(), 4, 12, 10),
-                new BlueprintTrade(1, WindsweptItems.HOLLY_BERRIES.get(), 1, 4, 10),
-                new BlueprintTrade(1, WindsweptBlocks.PINECONE.get().asItem(), 1, 4, 10),
-                new BlueprintTrade(1, WindsweptItems.ROASTED_CHESTNUTS.get(), 1, 4, 10));
+    public static void registerTrades() {
+        TradeOfferHelper.registerWanderingTraderOffers(1, listings -> {
+            listings.add(new ItemsForEmeralds(WindsweptBlocks.HOLLY_SAPLING.asItem(), 5, 1, 8, 1));
+            listings.add(new ItemsForEmeralds(WindsweptBlocks.CHESTNUT_SAPLING.asItem(), 5, 1, 8, 1));
+            listings.add(new ItemsForEmeralds(WindsweptBlocks.PINE_SAPLING.asItem(), 5, 1, 8, 1 ));
+            listings.add(new ItemsForEmeralds(WindsweptBlocks.PINECONE.asItem(), 1, 4, 12, 1));
+            listings.add(new ItemsForEmeralds(WindsweptItems.WILD_BERRIES, 1, 1, 4, 1));
+            listings.add(new ItemsForEmeralds(WindsweptItems.HOLLY_BERRIES, 1, 1, 4, 1));
+            listings.add(new ItemsForEmeralds(WindsweptItems.ROASTED_CHESTNUTS, 1, 1, 4, 1));
+        });
+
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 2, listings -> {
+            listings.add(new ItemsForEmeralds(WindsweptItems.WILD_BERRIES, 1, 4, 12, 10));
+        });
+
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.BUTCHER, 1, listings -> {
+            listings.add(new ItemsForEmeralds(WindsweptItems.GOAT, 12, 1, 16, 20));
+        });
+
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.BUTCHER, 3, listings -> {
+            listings.add(new ItemsForEmeralds(WindsweptItems.GOAT_STEW, 12, 1, 4, 20));
+            listings.add(new ItemsForEmeralds(WindsweptItems.COOKED_GOAT, 1, 5, 16, 10));
+        });
+
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LEATHERWORKER, 4, listings -> {
+            listings.add(new ItemsForEmeralds(WindsweptItems.SNOW_BOOTS, 1, 5, 1, 20));
+        });
+
+        // TODO: Readd the replacement of Spruce boats in Snowy fishermen with Chestnut boats
     }
-
-    @SubscribeEvent
-    public static void villagerTrades(VillagerTradesEvent event) {
-        TradeUtil.addVillagerTrades(event, VillagerProfession.FARMER, TradeUtil.APPRENTICE, new BlueprintTrade(1, WindsweptItems.WILD_BERRIES.get(), 4, 12, 10));
-        TradeUtil.addVillagerTrades(event, VillagerProfession.BUTCHER, TradeUtil.JOURNEYMAN, new BlueprintTrade(WindsweptItems.GOAT_STEW.get(), 12, 1, 4, 20), new BlueprintTrade(1, WindsweptItems.COOKED_GOAT.get(), 5, 16, 10));
-        TradeUtil.addVillagerTrades(event, VillagerProfession.BUTCHER, TradeUtil.NOVICE, new BlueprintTrade(WindsweptItems.GOAT.get(), 12, 1, 16, 20));
-        TradeUtil.addVillagerTrades(event, VillagerProfession.LEATHERWORKER, TradeUtil.EXPERT, new BlueprintTrade(WindsweptItems.SNOW_BOOTS.get(), 1, 5, 1, 20));
-
-        if (event.getType().equals(VillagerProfession.FISHERMAN))
-            for (VillagerTrades.ItemListing listing : event.getTrades().get(5))
-                if (listing instanceof VillagerTrades.EmeraldsForVillagerTypeItem trade) {
-                    HashMap<VillagerType, Item> newTrades = new HashMap<>(trade.trades);
-                    VillagerType ice = BuiltInRegistries.VILLAGER_TYPE.get(Windswept.id("ice"));
-
-                    if (!trade.trades.containsKey(ice))
-                        newTrades.put(ice, WindsweptItems.HOLLY_BOAT.getFirst().get());
-
-                    if (newTrades.get(VillagerType.SNOW) == Items.SPRUCE_BOAT)
-                        newTrades.replace(VillagerType.SNOW, WindsweptItems.CHESTNUT_BOAT.getFirst().get());
-
-                    trade.trades = ImmutableMap.copyOf(newTrades);
-                }
-    }
-
 }

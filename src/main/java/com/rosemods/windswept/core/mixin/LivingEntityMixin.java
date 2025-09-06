@@ -1,16 +1,19 @@
 package com.rosemods.windswept.core.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.rosemods.windswept.common.enchantment.curse.SlippingCurseEnchantment;
 import com.rosemods.windswept.common.item.AntlerHelmetItem;
 import com.rosemods.windswept.common.item.SnowBootsItem;
 import com.rosemods.windswept.core.other.WindsweptEntityData;
+import com.rosemods.windswept.core.other.events.WindsweptEntityEvents;
 import com.rosemods.windswept.core.other.tags.WindsweptEntityTypeTags;
 import com.rosemods.windswept.core.registry.WindsweptEffects;
 import com.rosemods.windswept.core.registry.WindsweptItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -52,6 +55,15 @@ public abstract class LivingEntityMixin extends Entity {
     )
     private float applySlipping(Block block, Operation<Float> operation) {
         return SlippingCurseEnchantment.getFriction(this, operation.call(block));
+    }
+
+    @ModifyReturnValue(method = "hurt", at = @At("RETURN"))
+    private boolean applyThorns(boolean bl, DamageSource source, float amount) {
+        if (bl) {
+            WindsweptEntityEvents.onEntityHurt(((LivingEntity) (Object) this), source);
+            return true;
+        }
+        return false;
     }
 
     @Override

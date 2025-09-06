@@ -3,67 +3,64 @@ package com.rosemods.windswept.core.other.events;
 import com.rosemods.windswept.client.render.entity.ChilledRenderer;
 import com.rosemods.windswept.client.render.entity.FrostArrowRenderer;
 import com.rosemods.windswept.client.render.entity.FrostbiterRenderer;
-import com.rosemods.windswept.client.render.gui.CarvedPineconeOverlay;
-import com.rosemods.windswept.core.Windswept;
 import com.rosemods.windswept.core.other.WindsweptModelLayers;
 import com.rosemods.windswept.core.registry.WindsweptBlockEntities;
 import com.rosemods.windswept.core.registry.WindsweptBlocks;
 import com.rosemods.windswept.core.registry.WindsweptEntityTypes;
 import com.rosemods.windswept.core.registry.WindsweptItems;
-import com.teamabnormals.blueprint.core.util.DataUtil;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Arrays;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Windswept.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class WindsweptClientEvents {
-    private static final List<Block> FOLIAGE_COLOR_BLOCKS = Arrays.asList(WindsweptBlocks.CHESTNUT_LEAVES, WindsweptBlocks.CHESTNUT_LEAF_PILE, WindsweptBlocks.FLOWERING_ACACIA_LEAVES, WindsweptBlocks.FLOWERING_ACACIA_LEAF_PILE);
-    private static final List<Block> GRASS_COLOR_BLOCKS = Arrays.asList(WindsweptBlocks.YELLOW_PETALS);
+    private static final List<Block> FOLIAGE_COLOR_BLOCKS = List.of(WindsweptBlocks.CHESTNUT_LEAVES, WindsweptBlocks.FLOWERING_ACACIA_LEAVES);
+    private static final List<Block> GRASS_COLOR_BLOCKS = List.of(WindsweptBlocks.YELLOW_PETALS);
 
-    @SubscribeEvent
-    public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
-        event.register((s, c) -> c > 0 ? -1 : ((DyeableLeatherItem) s.getItem()).getColor(s), WindsweptItems.SNOW_BOOTS.get());
-        DataUtil.registerBlockItemColor(event.getItemColors(), (stack, c) -> event.getBlockColors().getColor(((BlockItem) stack.getItem()).getBlock().defaultBlockState(), null, null, c), FOLIAGE_COLOR_BLOCKS);
+    public static void registerItemColors() {
+        ColorProviderRegistry.ITEM.register(
+            (stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableLeatherItem) stack.getItem()).getColor(stack),
+            WindsweptItems.SNOW_BOOTS
+        );
+        ColorProviderRegistry.ITEM.register(
+            (stack, c) -> {
+                Block block = ((BlockItem) stack.getItem()).getBlock();
+                return ColorProviderRegistry.BLOCK.get(block).getColor(block.defaultBlockState(), null, null, c);
+            },
+            FOLIAGE_COLOR_BLOCKS.stream().map(Block::asItem).toArray(ItemLike[]::new)
+        );
     }
 
-    @SubscribeEvent
-    public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-        DataUtil.registerBlockColor(event.getBlockColors(), (state, tint, pos, u) -> pos != null && tint != null ? BiomeColors.getAverageFoliageColor(tint, pos) : FoliageColor.getDefaultColor(), FOLIAGE_COLOR_BLOCKS);
-        DataUtil.registerBlockColor(event.getBlockColors(), (state, tint, pos, u) -> pos != null && tint != null ? BiomeColors.getAverageGrassColor(tint, pos) : GrassColor.getDefaultColor(), GRASS_COLOR_BLOCKS);
+    public static void registerBlockColors() {
+        ColorProviderRegistry.BLOCK.register(
+            (state, tint, pos, u) -> pos != null && tint != null ? BiomeColors.getAverageFoliageColor(tint, pos) : FoliageColor.getDefaultColor(),
+            FOLIAGE_COLOR_BLOCKS.toArray(Block[]::new)
+        );
+        ColorProviderRegistry.BLOCK.register(
+            (state, tint, pos, u) -> pos != null && tint != null ? BiomeColors.getAverageGrassColor(tint, pos) : GrassColor.getDefaultColor(),
+            GRASS_COLOR_BLOCKS.toArray(Block[]::new)
+        );
     }
 
-    @SubscribeEvent
-    public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
-        event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), "carved_pinecone", new CarvedPineconeOverlay());
+    public static void registerLayerDefinitions() {
+        EntityModelLayerRegistry.registerModelLayer(WindsweptModelLayers.CHILLED, WindsweptModelLayers::createChilledBodyLayer);
+        EntityModelLayerRegistry.registerModelLayer(WindsweptModelLayers.FROSTBITER, WindsweptModelLayers::createFrostbiterBodyLayer);
     }
 
-    @SubscribeEvent
-    public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(WindsweptModelLayers.CHILLED, WindsweptModelLayers::createChilledBodyLayer);
-        event.registerLayerDefinition(WindsweptModelLayers.FROSTBITER, WindsweptModelLayers::createFrostbiterBodyLayer);
+    public static void registerEntityRenderers() {
+        EntityRendererRegistry.register(WindsweptEntityTypes.CHILLED, ChilledRenderer::new);
+        EntityRendererRegistry.register(WindsweptEntityTypes.FROSTBITER, FrostbiterRenderer::new);
+        EntityRendererRegistry.register(WindsweptEntityTypes.FROST_ARROW, FrostArrowRenderer::new);
+        BlockEntityRenderers.register(WindsweptBlockEntities.SUSPICIOUS_SNOW, BrushableBlockRenderer::new);
     }
-
-    @SubscribeEvent
-    public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(WindsweptEntityTypes.CHILLED.get(), ChilledRenderer::new);
-        event.registerEntityRenderer(WindsweptEntityTypes.FROSTBITER.get(), FrostbiterRenderer::new);
-        event.registerEntityRenderer(WindsweptEntityTypes.FROST_ARROW.get(), FrostArrowRenderer::new);
-        event.registerBlockEntityRenderer(WindsweptBlockEntities.SUSPICIOUS_SNOW.get(), BrushableBlockRenderer::new);
-    }
-
 }

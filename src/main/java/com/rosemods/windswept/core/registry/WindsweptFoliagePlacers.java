@@ -5,9 +5,6 @@ import com.rosemods.windswept.core.Windswept;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public final class WindsweptFoliagePlacers {
     public static final FoliagePlacerType<?> CHESTNUT_FOLIAGE_PLACER = register("chestnut_foliage_placer", new FoliagePlacerType<>(ChestnutFoliagePlacer.CODEC));

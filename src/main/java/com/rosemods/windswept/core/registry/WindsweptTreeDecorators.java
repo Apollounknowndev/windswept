@@ -6,9 +6,6 @@ import com.rosemods.windswept.core.Windswept;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public final class WindsweptTreeDecorators {
     public static final TreeDecoratorType<?> BRANCH_DECORATOR = register("branch", new TreeDecoratorType<>(BranchDecorator.CODEC));
