@@ -18,3 +18,4 @@ accessible method net/minecraft/world/level/block/BaseEntityBlock createTickerHe
 accessible method net/minecraft/core/particles/SimpleParticleType <init> (Z)V
 accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns ITEM_TO_POT_TEXTURE Ljava/util/Map;
 mutable field net/minecraft/world/level/block/entity/DecoratedPotPatterns ITEM_TO_POT_TEXTURE Ljava/util/Map;
+accessible method net/minecraft/world/level/levelgen/feature/TreeFeature updateLeaves (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Set;Ljava/util/Set;Ljava/util/Set;)Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;

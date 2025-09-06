@@ -1,38 +1,33 @@
 package com.rosemods.windswept.common.item;
 
 import com.rosemods.windswept.common.block.IWoodenBucketPickupBlock;
-import com.rosemods.windswept.common.capability.wrappers.WoodenBucketWrapper;
 import com.rosemods.windswept.core.WindsweptConfig;
 import com.rosemods.windswept.core.registry.WindsweptItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.LiquidBlockContainer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
-import java.util.function.Supplier;
-
-// TODO: FIX
 public class WoodenBucketItem extends BucketItem {
     protected final Fluid fluid;
 
@@ -71,7 +66,7 @@ public class WoodenBucketItem extends BucketItem {
                     }
                 } else {
                     BlockState blockstate = level.getBlockState(blockpos);
-                    BlockPos blockpos2 = this.canBlockContainFluid(level, blockpos, blockstate) ? blockpos : blockpos1;
+                    BlockPos blockpos2 = blockstate.getBlock() instanceof LiquidBlockContainer && this.fluid == Fluids.WATER ? blockpos : blockpos1;
 
                     if (this.emptyContents(player, level, blockpos2, blockhitresult)) {
                         if (player instanceof ServerPlayer)
@@ -94,8 +89,8 @@ public class WoodenBucketItem extends BucketItem {
     }
 
     @Override
-    public boolean isRepairable() {
-        return this.fluid == Fluids.EMPTY;
+    public boolean isValidRepairItem(ItemStack stack, ItemStack repairStack) {
+        return stack.is(WindsweptItems.WOODEN_BUCKET) && repairStack.is(ItemTags.PLANKS);
     }
 
     @Override
@@ -103,32 +98,11 @@ public class WoodenBucketItem extends BucketItem {
         return false;
     }
 
-    @Override
-    public int getBurnTime(ItemStack stack, RecipeType<?> recipeType) {
-        return this.isEmpty() ? 600 : super.getBurnTime(stack, recipeType);
-    }
-
-    @Override
-    public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
-        return this.isEmpty() ? super.getCraftingRemainingItem(itemStack) : getEmpty(itemStack, null, null);
-    }
-
-    @Override
-    public EquipmentSlot getEquipmentSlot(ItemStack stack) {
-        return this.isEmpty() ? EquipmentSlot.HEAD : null;
-    }
-
-    @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag nbt) {
-        return new WoodenBucketWrapper(stack);
-    }
-
     // Util //
     public static ItemStack getEmpty(ItemStack handStack, Player player, InteractionHand hand) {
-        ItemStack bucket = new ItemStack(WindsweptItems.WOODEN_BUCKET.get());
+        ItemStack bucket = new ItemStack(WindsweptItems.WOODEN_BUCKET);
         bucket.setDamageValue(handStack.getDamageValue());
-        handStack.getAllEnchantments().forEach(bucket::enchant);
-
+        EnchantmentHelper.getEnchantments(handStack).forEach(bucket::enchant);
         if (player != null) {
             bucket.hurtAndBreak(1, player, p -> {
                 if (hand != null)
@@ -145,12 +119,11 @@ public class WoodenBucketItem extends BucketItem {
 
     public static ItemStack getFilled(ItemStack handStack, ItemLike filled, Player player) {
         ItemStack bucket = new ItemStack(filled);
-        handStack.getAllEnchantments().forEach(bucket::enchant);
+        EnchantmentHelper.getEnchantments(handStack).forEach(bucket::enchant);
 
         if (player == null || !player.getAbilities().instabuild)
             bucket.setDamageValue(handStack.getDamageValue());
 
         return player != null ? ItemUtils.createFilledResult(handStack, player, bucket) : bucket;
     }
-
 }

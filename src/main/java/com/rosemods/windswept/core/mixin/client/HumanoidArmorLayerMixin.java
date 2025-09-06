@@ -48,4 +48,9 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
         }
     }
 
+    @Inject(method = "renderArmorPiece", at = @At("HEAD"), cancellable = true)
+    private void dontRenderAntlerHelmet(PoseStack $$0, MultiBufferSource $$1, T $$2, EquipmentSlot $$3, int $$4, A $$5, CallbackInfo ci) {
+        ItemStack stack = $$2.getItemBySlot($$3);
+        if (stack.is(WindsweptItems.ANTLER_HELMET)) ci.cancel();
+    }
 }

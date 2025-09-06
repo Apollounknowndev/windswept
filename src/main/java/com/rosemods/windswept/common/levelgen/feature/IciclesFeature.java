@@ -12,9 +12,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.common.Tags;
 
-// TODO: FIX
 public class IciclesFeature extends Feature<NoneFeatureConfiguration> {
 
     public IciclesFeature() {
@@ -59,7 +57,7 @@ public class IciclesFeature extends Feature<NoneFeatureConfiguration> {
 
     private static boolean canPlaceOn(WorldGenLevel level, BlockPos pos) {
         BlockState state = level.getBlockState(pos);
-        return (state.is(BlockTags.ICE) && !state.is(Blocks.ICE) && !state.is(WindsweptBlocks.ICICLES)) || state.is(Tags.Blocks.STONE);
+        return (state.is(BlockTags.ICE) && !state.is(Blocks.ICE) && !state.is(WindsweptBlocks.ICICLES)) || state.is(BlockTags.BASE_STONE_OVERWORLD);
     }
 
 }

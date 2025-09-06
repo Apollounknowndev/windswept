@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-// TODO: FIX
 public class FrostbiterRenderer extends MobRenderer<Frostbiter, FrostbiterModel> {
     private static final ResourceLocation FROSTBITER_LOCATION = Windswept.id("textures/entity/frostbiter/frostbiter.png");
     private static final ResourceLocation FROSTBITER_BABY_LOCATION = Windswept.id("textures/entity/frostbiter/frostbiter_baby.png");

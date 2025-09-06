@@ -9,7 +9,6 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Blocks;
 
-// TODO: FIX
 public class SlippingCurseEnchantment extends Enchantment {
 
     public SlippingCurseEnchantment() {
@@ -53,7 +52,7 @@ public class SlippingCurseEnchantment extends Enchantment {
     }
 
     public static boolean hasSlipping(LivingEntity entity) {
-        return EnchantmentHelper.getEnchantmentLevel(WindsweptEnchantments.SLIPPING_CURSE.get(), entity) > 0;
+        return EnchantmentHelper.getEnchantmentLevel(WindsweptEnchantments.SLIPPING_CURSE, entity) > 0;
     }
 
 }

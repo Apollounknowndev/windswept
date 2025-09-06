@@ -12,6 +12,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
@@ -102,7 +103,7 @@ public class ChestnutTrunkPlacer extends TrunkPlacer {
                         this.placeLog(level, consumer, rand, pos.offset(x, -1, z), config);
                         grassCheck--;
 
-                        if (level.isStateAtPosition(pos.offset(x, -2, z), state -> state.canBeReplaced()) && WindsweptConfig.COMMON.roots)
+                        if (level.isStateAtPosition(pos.offset(x, -2, z), BlockBehaviour.BlockStateBase::canBeReplaced) && WindsweptConfig.COMMON.roots.get())
                             consumer.accept(pos.offset(x, -2, z), Blocks.HANGING_ROOTS.defaultBlockState());
                     }
 

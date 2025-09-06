@@ -67,7 +67,11 @@ cloche {
                 }
 
                 entrypoint("main") {
-                    value = "com.rosemods.windswept.core.WindsweptFabric"
+                    value = "com.rosemods.windswept.core.Windswept"
+                }
+
+                entrypoint("client") {
+                    value = "com.rosemods.windswept.core.WindsweptClient"
                 }
             }
         }

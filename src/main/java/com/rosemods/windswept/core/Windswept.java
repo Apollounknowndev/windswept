@@ -16,6 +16,7 @@ public class Windswept {
         WindsweptBlockEntities.init();
         WindsweptEffects.init();
         WindsweptEnchantments.init();
+        WindsweptEntityData.init();
         WindsweptEntityTypes.init();
         WindsweptFeatures.init();
         WindsweptFoliagePlacers.init();

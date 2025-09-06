@@ -316,7 +316,7 @@ public class WindsweptBlocks {
     public static final Block CANDY_CANE_BLOCK = register("candy_cane_block", new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.QUARTZ_PILLAR)));
 
     // Ginger Blocks //
-    public static final Block GINGER_SOIL = register("ginger_soil", new GingerSoilBlock(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).strength(.5f).sound(SoundType.GRAVEL)));
+    public static final Block GINGER_SOIL = register("ginger_soil", new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).strength(.5f).sound(SoundType.GRAVEL)));
     public static final Block GINGER = rawRegister("ginger", new GingerCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
 
     public static final Block GINGERBREAD_BLOCK = register("gingerbread_block", new Block(Properties.GINGERBREAD));

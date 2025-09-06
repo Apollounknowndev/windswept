@@ -22,7 +22,7 @@ public class FloorIciclesFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         BlockPos origin = context.origin();
         WorldGenLevel level = context.level();
-        BlockState state = WindsweptBlocks.ICICLES.get().defaultBlockState().setValue(IciclesBlock.STATE, IciclesBlock.IcicleStates.FLOOR);
+        BlockState state = WindsweptBlocks.ICICLES.defaultBlockState().setValue(IciclesBlock.STATE, IciclesBlock.IcicleStates.FLOOR);
         RandomSource rand = context.random();
         boolean generated = false;
 
@@ -42,7 +42,7 @@ public class FloorIciclesFeature extends Feature<NoneFeatureConfiguration> {
 
     public static boolean canPlaceOn(WorldGenLevel level, BlockPos pos) {
         BlockState state = level.getBlockState(pos);
-        return state.is(BlockTags.ICE) && !state.is(Blocks.ICE) && !state.is(WindsweptBlocks.ICICLES.get());
+        return state.is(BlockTags.ICE) && !state.is(Blocks.ICE) && !state.is(WindsweptBlocks.ICICLES);
     }
 
 }

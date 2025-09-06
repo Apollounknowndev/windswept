@@ -3,7 +3,6 @@ package com.rosemods.windswept.common.levelgen.feature;
 import com.google.common.collect.Lists;
 import com.rosemods.windswept.common.block.PineconeBlock;
 import com.rosemods.windswept.core.registry.WindsweptBlocks;
-import com.teamabnormals.blueprint.common.levelgen.feature.BlueprintTreeFeature;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -15,7 +14,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 
 import java.util.List;
 
-// TODO: FIX
 public class PineTreeFeature extends BlueprintTreeFeature {
     public PineTreeFeature() {
         super(TreeConfiguration.CODEC);
@@ -31,10 +29,10 @@ public class PineTreeFeature extends BlueprintTreeFeature {
         int height = rand.nextInt(10, 14);
         int weatheredHeight = rand.nextInt(7, height - 1);
         int weatheredHeightMin = rand.nextInt(2, weatheredHeight - 2);
-        BlockState weathered = WindsweptBlocks.WEATHERED_PINE_LOG.get().defaultBlockState();
+        BlockState weathered = WindsweptBlocks.WEATHERED_PINE_LOG.defaultBlockState();
 
         if (isFairy) {
-            BlockState state = WindsweptBlocks.NIGHTSHADE.get().defaultBlockState();
+            BlockState state = WindsweptBlocks.NIGHTSHADE.defaultBlockState();
             WorldGenLevel level = context.level();
 
             for (BlockPos pos : new BlockPos[]{origin.north(1), origin.south(1), origin.east(1), origin.west(1)})
@@ -111,9 +109,9 @@ public class PineTreeFeature extends BlueprintTreeFeature {
 
         for (int y = 1; y < 5; y++) {
             int i = switch (y) {
-                default -> y;
                 case 3 -> 2;
                 case 4 -> 1;
+                default -> y;
             };
 
             for (int x = -i; x <= i; x++)
@@ -129,13 +127,12 @@ public class PineTreeFeature extends BlueprintTreeFeature {
     }
 
     private void addPinecones(BlockPos pos, int amount, boolean isFairy) {
-        this.addSpecialFoliage(pos, (isFairy ? WindsweptBlocks.NIGHT_FAIRY_LIGHT : WindsweptBlocks.PINECONE).get().defaultBlockState().setValue(PineconeBlock.AMOUNT, amount));
+        this.addSpecialFoliage(pos, (isFairy ? WindsweptBlocks.NIGHT_FAIRY_LIGHT : WindsweptBlocks.PINECONE).defaultBlockState().setValue(PineconeBlock.AMOUNT, amount));
     }
 
     @Override
     public BlockState getSapling() {
-        return WindsweptBlocks.PINE_SAPLING.get().defaultBlockState();
+        return WindsweptBlocks.PINE_SAPLING.defaultBlockState();
     }
-
 }
 

@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 
-// TODO: FIX
 public class WindsweptCompressedBlock extends DirectionalBlock {
     public WindsweptCompressedBlock(Properties properties) {
         super(properties);

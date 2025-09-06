@@ -2,8 +2,10 @@ package com.rosemods.windswept.core.registry;
 
 import com.rosemods.windswept.common.item.*;
 import com.rosemods.windswept.core.Windswept;
+import com.rosemods.windswept.core.WindsweptConfig;
 import com.rosemods.windswept.core.other.WindsweptFoods;
 import com.rosemods.windswept.core.other.tags.WindsweptBannerPatternTags;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
@@ -32,10 +34,10 @@ public class WindsweptItems {
     public static final Item SNOW_BOOTS = register("snow_boots", new SnowBootsItem(new Item.Properties()));
 
     // Wooden Buckets //
-    public static final Item WOODEN_BUCKET = register("wooden_bucket", new WoodenBucketItem(Fluids.EMPTY, new Item.Properties()));
-    public static final Item WOODEN_WATER_BUCKET = register("wooden_water_bucket", new WoodenBucketItem(Fluids.WATER, new Item.Properties().craftRemainder(WOODEN_BUCKET)));
-    public static final Item WOODEN_MILK_BUCKET = register("wooden_milk_bucket", new WoodenMilkBucketItem(new Item.Properties().craftRemainder(WOODEN_BUCKET)));
-    public static final Item WOODEN_POWDER_SNOW_BUCKET = register("wooden_powder_snow_bucket", new WoodenPowderSnowBucketItem(new Item.Properties().craftRemainder(WOODEN_BUCKET)));
+    public static final Item WOODEN_BUCKET = register("wooden_bucket", new EmptyWoodenBucketItem(Fluids.EMPTY, new Item.Properties().durability(WindsweptConfig.COMMON.woodenBucketDurabilty.get())));
+    public static final Item WOODEN_WATER_BUCKET = register("wooden_water_bucket", new WoodenBucketItem(Fluids.WATER, new Item.Properties().craftRemainder(WOODEN_BUCKET).durability(WindsweptConfig.COMMON.woodenBucketDurabilty.get())));
+    public static final Item WOODEN_MILK_BUCKET = register("wooden_milk_bucket", new WoodenMilkBucketItem(new Item.Properties().craftRemainder(WOODEN_BUCKET).durability(WindsweptConfig.COMMON.woodenBucketDurabilty.get())));
+    public static final Item WOODEN_POWDER_SNOW_BUCKET = register("wooden_powder_snow_bucket", new WoodenPowderSnowBucketItem(new Item.Properties().craftRemainder(WOODEN_BUCKET).durability(WindsweptConfig.COMMON.woodenBucketDurabilty.get())));
 
     // Food //
     public static final Item WILD_BERRIES = register("wild_berries", new ItemNameBlockItem(WindsweptBlocks.WILD_BERRY_BUSH, new Item.Properties().food(WindsweptFoods.WILD_BERRIES)));
@@ -100,6 +102,8 @@ public class WindsweptItems {
     }
 
     public static void init() {
+        FuelRegistry registry = FuelRegistry.INSTANCE;
+        registry.add(WOODEN_BUCKET, 600);
 
     }
 }

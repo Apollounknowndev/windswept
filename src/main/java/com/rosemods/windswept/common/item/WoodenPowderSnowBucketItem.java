@@ -1,6 +1,5 @@
 package com.rosemods.windswept.common.item;
 
-import com.rosemods.windswept.core.WindsweptConfig;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -12,7 +11,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
-// TODO: FIX
 public class WoodenPowderSnowBucketItem extends SolidBucketItem {
 
     public WoodenPowderSnowBucketItem(Properties properties) {
@@ -46,17 +44,7 @@ public class WoodenPowderSnowBucketItem extends SolidBucketItem {
     }
 
     @Override
-    public int getMaxDamage(ItemStack stack) {
-        return WindsweptConfig.COMMON.woodenBucketDurabilty.get();
-    }
-
-    @Override
-    public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
-        return WoodenBucketItem.getEmpty(itemStack, null, null);
-    }
-
-    @Override
-    public boolean isRepairable(ItemStack stack) {
+    public boolean isValidRepairItem(ItemStack stack1, ItemStack stack2) {
         return false;
     }
 
@@ -64,5 +52,4 @@ public class WoodenPowderSnowBucketItem extends SolidBucketItem {
     public boolean isEnchantable(ItemStack stack) {
         return false;
     }
-
 }

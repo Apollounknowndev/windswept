@@ -24,12 +24,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-// TODO: FIX
 public class WildBerryBushBlock extends BushBlock implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     private static final VoxelShape SMALL_SHAPE = Block.box(3f, 0f, 3f, 13f, 5f, 13f);
@@ -55,10 +55,10 @@ public class WildBerryBushBlock extends BushBlock implements BonemealableBlock {
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
         int i = state.getValue(AGE);
-        if (i < 3 && level.getRawBrightness(pos.above(), 0) >= 9 && ForgeHooks.onCropsGrowPre(level, pos, state, rand.nextInt(5) == 0)) {
+        if (i < 3 && level.getRawBrightness(pos.above(), 0) >= 9 && rand.nextInt(5) == 0) {
             BlockState state1 = state.setValue(AGE, i + 1);
             level.setBlock(pos, state1, 2);
-            ForgeHooks.onCropsGrowPost(level, pos, state1);
+            level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(state1));
         }
     }
 

@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Optional;
 
-// TODO: FIX
 public interface IWoodenBucketPickupBlock {
     default void pickupBlockFromWoodenBucket(LevelAccessor level, BlockPos pos, BlockState state) {
         if (state.getBlock() instanceof BucketPickup pickup)
@@ -17,7 +16,8 @@ public interface IWoodenBucketPickupBlock {
     }
 
     default Optional<SoundEvent> getWoodenBucketPickupSound(BlockState state) {
-        return state.getBlock() instanceof BucketPickup pickup ? pickup.getPickupSound(state) : Optional.empty();
+        // TODO: getPickupSound no longer takes a BlockState?
+        return state.getBlock() instanceof BucketPickup pickup ? pickup.getPickupSound() : Optional.empty();
     }
 
     default boolean canPickupFromWoodenBucket(LevelAccessor level, BlockPos pos, BlockState state) {

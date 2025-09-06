@@ -1,6 +1,11 @@
 {
   "sources": [
     {
+      "type": "minecraft:directory",
+      "prefix": "models/",
+      "source": "models"
+    },
+    {
       "type": "minecraft:paletted_permutations",
       "palette_key": "minecraft:trims/color_palettes/trim_palette",
       "permutations": {

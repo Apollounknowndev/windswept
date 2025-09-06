@@ -4,22 +4,15 @@ import com.rosemods.windswept.core.registry.WindsweptBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SnowyDirtBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-// TODO: FIX
 public class GelisolBlock extends SnowyDirtBlock implements BonemealableBlock {
     public GelisolBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    public BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction action, boolean simulate) {
-        return action == ToolActions.SHOVEL_FLATTEN ? WindsweptBlocks.GELISOL_PATH.defaultBlockState() : null;
     }
 
     @Override

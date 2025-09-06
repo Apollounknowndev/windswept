@@ -6,7 +6,7 @@ import com.rosemods.windswept.common.item.SnowBootsItem;
 import com.rosemods.windswept.common.item.WoodenMilkBucketItem;
 import com.rosemods.windswept.core.Windswept;
 import com.rosemods.windswept.core.WindsweptConfig;
-import com.rosemods.windswept.core.other.WindsweptDataProcessors;
+import com.rosemods.windswept.core.other.WindsweptEntityData;
 import com.rosemods.windswept.core.other.tags.WindsweptEntityTypeTags;
 import com.rosemods.windswept.core.registry.WindsweptEffects;
 import com.rosemods.windswept.core.registry.WindsweptEntityTypes;
@@ -136,30 +136,30 @@ public class WindsweptEntityEvents {
         if (!entity.level().isClientSide) {
             boolean flag = entity.isCrouching() && entity.getItemBySlot(EquipmentSlot.CHEST).is(WindsweptItems.FEATHER_CLOAK.get());
 
-            if (flag != data.getValue(WindsweptDataProcessors.CLOAKED)) {
-                data.setValue(WindsweptDataProcessors.CLOAKED, flag);
+            if (flag != data.getValue(WindsweptEntityData.CLOAKED)) {
+                data.setValue(WindsweptEntityData.CLOAKED, flag);
                 FeatherCloakItem.spawnFeatherCloakParticle(entity);
             }
         }
 
         // chilled conversion in powder snow
         if (entity.getType().is(WindsweptEntityTypeTags.CONVERT_TO_CHILLED) && entity instanceof Mob mob && !mob.level().isClientSide && mob.isAlive() && !mob.isNoAi()) {
-            if (data.getValue(WindsweptDataProcessors.IS_FREEZE_CONVERTING)) {
-                ammendData(data, WindsweptDataProcessors.FREEZE_CONVERT_TIME, -1);
-                if (data.getValue(WindsweptDataProcessors.FREEZE_CONVERT_TIME) < 0) {
+            if (data.getValue(WindsweptEntityData.IS_FREEZE_CONVERTING)) {
+                ammendData(data, WindsweptEntityData.FREEZE_CONVERT_TIME, -1);
+                if (data.getValue(WindsweptEntityData.FREEZE_CONVERT_TIME) < 0) {
                     mob.convertTo(WindsweptEntityTypes.CHILLED.get(), true);
                     data.clean();
                     if (!mob.isSilent())
                         mob.level().levelEvent(null, 1048, mob.blockPosition(), 0);
                 }
             } else if (mob.isInPowderSnow) {
-                ammendData(data, WindsweptDataProcessors.POWDER_SNOW_TIME, 1);
-                if (data.getValue(WindsweptDataProcessors.POWDER_SNOW_TIME) >= 140) {
-                    data.setValue(WindsweptDataProcessors.FREEZE_CONVERT_TIME, 300);
-                    data.setValue(WindsweptDataProcessors.IS_FREEZE_CONVERTING, true);
+                ammendData(data, WindsweptEntityData.POWDER_SNOW_TIME, 1);
+                if (data.getValue(WindsweptEntityData.POWDER_SNOW_TIME) >= 140) {
+                    data.setValue(WindsweptEntityData.FREEZE_CONVERT_TIME, 300);
+                    data.setValue(WindsweptEntityData.IS_FREEZE_CONVERTING, true);
                 }
             } else
-                data.setValue(WindsweptDataProcessors.POWDER_SNOW_TIME, -1);
+                data.setValue(WindsweptEntityData.POWDER_SNOW_TIME, -1);
         }
 
     }

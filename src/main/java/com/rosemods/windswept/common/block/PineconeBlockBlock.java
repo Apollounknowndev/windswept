@@ -16,9 +16,7 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.ToolActions;
 
-// TODO: FIX
 public class PineconeBlockBlock extends RotatedPillarBlock {
     public PineconeBlockBlock(Properties properties) {
         super(properties);
@@ -28,12 +26,12 @@ public class PineconeBlockBlock extends RotatedPillarBlock {
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
         ItemStack stack = player.getItemInHand(hand);
 
-        if (stack.canPerformAction(ToolActions.SHEARS_CARVE)) {
+        if (stack.is(Items.SHEARS)) {
             if (!level.isClientSide) {
                 Direction direction = result.getDirection().getAxis() == Direction.Axis.Y ? player.getDirection().getOpposite() : result.getDirection();
 
                 level.playSound(null, pos, SoundEvents.PUMPKIN_CARVE, SoundSource.BLOCKS, 1f, 1f);
-                level.setBlock(pos, WindsweptBlocks.CARVED_PINECONE_BLOCK.get().defaultBlockState().setValue(CarvedPineconeBlock.FACING, direction), 11);
+                level.setBlock(pos, WindsweptBlocks.CARVED_PINECONE_BLOCK.defaultBlockState().setValue(CarvedPineconeBlock.FACING, direction), 11);
                 stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
                 level.gameEvent(player, GameEvent.SHEAR, pos);
                 player.awardStat(Stats.ITEM_USED.get(Items.SHEARS));

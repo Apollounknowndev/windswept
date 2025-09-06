@@ -1,8 +1,11 @@
 package com.rosemods.windswept.core.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.rosemods.windswept.common.enchantment.curse.SlippingCurseEnchantment;
 import com.rosemods.windswept.common.item.AntlerHelmetItem;
 import com.rosemods.windswept.common.item.SnowBootsItem;
+import com.rosemods.windswept.core.other.WindsweptEntityData;
 import com.rosemods.windswept.core.other.tags.WindsweptEntityTypeTags;
 import com.rosemods.windswept.core.registry.WindsweptEffects;
 import com.rosemods.windswept.core.registry.WindsweptItems;
@@ -13,8 +16,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -22,9 +27,31 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
-
     private LivingEntityMixin(EntityType<?> type, Level level) {
         super(type, level);
+    }
+
+    @Inject(
+        method = "defineSynchedData",
+        at = @At("TAIL")
+    )
+    private void addCloakedData(CallbackInfo ci) {
+        this.entityData.define(WindsweptEntityData.CLOAKED, false);
+        this.entityData.define(WindsweptEntityData.IS_FREEZE_CONVERTING, false);
+        this.entityData.define(WindsweptEntityData.FREEZE_CONVERT_TIME, 0);
+        this.entityData.define(WindsweptEntityData.POWDER_SNOW_TIME, 0);
+
+    }
+
+    @WrapOperation(
+        method = "travel",
+        at = @At(
+            value = "INVOKE",
+            target = "Lnet/minecraft/world/level/block/Block;getFriction()F"
+        )
+    )
+    private float applySlipping(Block block, Operation<Float> operation) {
+        return SlippingCurseEnchantment.getFriction(this, operation.call(block));
     }
 
     @Override

@@ -16,13 +16,11 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.DyeableArmorItem;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.UUID;
 
-// TODO: FIX
 public class SnowBootsItem extends DyeableArmorItem {
     private static final UUID SNOW_SPEED_UUID = UUID.fromString("713d8671-29b8-4600-ba51-580b91cc24cf");
     private static final UUID SPEED_MODIFIER_SNOW_SPEED_UUID = UUID.fromString("c51348dc-85bf-4ac5-8428-deefefec04aa");
@@ -32,7 +30,7 @@ public class SnowBootsItem extends DyeableArmorItem {
     }
 
     @Override
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.putAll(super.getDefaultAttributeModifiers(slot));
 
