@@ -2,7 +2,6 @@ package com.rosemods.windswept.core.registry;
 
 import com.rosemods.windswept.common.item.*;
 import com.rosemods.windswept.core.Windswept;
-import com.rosemods.windswept.core.WindsweptConfig;
 import com.rosemods.windswept.core.other.WindsweptFoods;
 import com.rosemods.windswept.core.other.tags.WindsweptBannerPatternTags;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -32,12 +31,13 @@ public class WindsweptItems {
     public static final Item ANTLER_HELMET = register("antler_helmet", new AntlerHelmetItem(new Item.Properties()));
     public static final Item FEATHER_CLOAK = register("feather_cloak", new FeatherCloakItem(new Item.Properties()));
     public static final Item SNOW_BOOTS = register("snow_boots", new SnowBootsItem(new Item.Properties()));
+    public static final Item CARVED_PINECONE_BLOCK = register("carved_pinecone_block", new WearableBlockItem(WindsweptBlocks.CARVED_PINECONE_BLOCK, new Item.Properties()));
 
     // Wooden Buckets //
-    public static final Item WOODEN_BUCKET = register("wooden_bucket", new EmptyWoodenBucketItem(Fluids.EMPTY, new Item.Properties().durability(WindsweptConfig.COMMON.woodenBucketDurabilty.get())));
-    public static final Item WOODEN_WATER_BUCKET = register("wooden_water_bucket", new WoodenBucketItem(Fluids.WATER, new Item.Properties().craftRemainder(WOODEN_BUCKET).durability(WindsweptConfig.COMMON.woodenBucketDurabilty.get())));
-    public static final Item WOODEN_MILK_BUCKET = register("wooden_milk_bucket", new WoodenMilkBucketItem(new Item.Properties().craftRemainder(WOODEN_BUCKET).durability(WindsweptConfig.COMMON.woodenBucketDurabilty.get())));
-    public static final Item WOODEN_POWDER_SNOW_BUCKET = register("wooden_powder_snow_bucket", new WoodenPowderSnowBucketItem(new Item.Properties().craftRemainder(WOODEN_BUCKET).durability(WindsweptConfig.COMMON.woodenBucketDurabilty.get())));
+    public static final Item WOODEN_BUCKET = register("wooden_bucket", new EmptyWoodenBucketItem(Fluids.EMPTY, new Item.Properties().durability(24)));
+    public static final Item WOODEN_WATER_BUCKET = register("wooden_water_bucket", new WoodenBucketItem(Fluids.WATER, new Item.Properties().craftRemainder(WOODEN_BUCKET).durability(24)));
+    public static final Item WOODEN_MILK_BUCKET = register("wooden_milk_bucket", new WoodenMilkBucketItem(new Item.Properties().craftRemainder(WOODEN_BUCKET).durability(24)));
+    public static final Item WOODEN_POWDER_SNOW_BUCKET = register("wooden_powder_snow_bucket", new WoodenPowderSnowBucketItem(new Item.Properties().craftRemainder(WOODEN_BUCKET).durability(24)));
 
     // Food //
     public static final Item WILD_BERRIES = register("wild_berries", new ItemNameBlockItem(WindsweptBlocks.WILD_BERRY_BUSH, new Item.Properties().food(WindsweptFoods.WILD_BERRIES)));
@@ -48,6 +48,7 @@ public class WindsweptItems {
     public static final Item ROASTED_CHESTNUTS = register("roasted_chestnuts", new Item(new Item.Properties().food(WindsweptFoods.ROASTED_CHESTNUTS)));
     public static final Item CHESTNUT_SOUP = register("chestnut_soup", new BowlFoodItem(new Item.Properties().food(WindsweptFoods.CHESTNUT_SOUP).craftRemainder(Items.BOWL).stacksTo(1)));
 
+    public static final Item CHRISTMAS_PUDDING = register("christmas_pudding", new BlockItem(WindsweptBlocks.CHRISTMAS_PUDDING, new Item.Properties().stacksTo(1)));
     public static final Item GINGER_ROOT = register("ginger_root", new ItemNameBlockItem(WindsweptBlocks.GINGER, new Item.Properties().food(WindsweptFoods.GINGER_ROOT)));
     public static final Item GINGERBREAD_COOKIE = register("gingerbread_cookie", new Item(new Item.Properties().food(WindsweptFoods.GINGERBREAD_COOKIE)));
     public static final Item GINGER_TEA = register("ginger_tea", new DrinkableBottleItem(WindsweptFoods.GINGER_TEA));
@@ -98,6 +99,9 @@ public class WindsweptItems {
     public static final Item LARGE_PINE_BOAT = register("large_pine_boat", new Item(new Item.Properties()));
 
     private static Item register(String name, Item item) {
+        if (item instanceof BlockItem blockItem) {
+            Item.BY_BLOCK.put(blockItem.getBlock(), item);
+        }
         return Registry.register(BuiltInRegistries.ITEM, Windswept.id(name), item);
     }
 

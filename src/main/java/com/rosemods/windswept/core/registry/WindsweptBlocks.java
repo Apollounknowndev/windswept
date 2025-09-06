@@ -48,10 +48,10 @@ public class WindsweptBlocks {
     public static final Block HOLLY_BUTTON = register("holly_button", new ButtonBlock(Properties.HOLLY.button(), Properties.HOLLY_BLOCK_SET, 30, true));
     public static final Block HOLLY_DOOR = register("holly_door", new DoorBlock(Properties.HOLLY.door(), Properties.HOLLY_BLOCK_SET));
     public static final Block HOLLY_TRAPDOOR = register("holly_trapdoor", new TrapDoorBlock(Properties.HOLLY.trapdoor(), Properties.HOLLY_BLOCK_SET));
-    public static final Block HOLLY_STANDING_SIGN = register("holly_sign", new StandingSignBlock(Properties.HOLLY.sign().sound(SoundType.CHERRY_WOOD), Properties.HOLLY_WOOD_TYPE));
-    public static final Block HOLLY_WALL_SIGN = register("holly_wall_sign", new WallSignBlock(Properties.HOLLY.sign().sound(SoundType.CHERRY_WOOD), Properties.HOLLY_WOOD_TYPE));
-    public static final Block HOLLY_CEILING_HANGING_SIGN = register("holly_hanging_sign", new CeilingHangingSignBlock(Properties.HOLLY.hangingSign().sound(SoundType.CHERRY_WOOD_HANGING_SIGN), Properties.HOLLY_WOOD_TYPE));
-    public static final Block HOLLY_WALL_HANGING_SIGN = register("holly_wall_hanging_sign", new WallHangingSignBlock(Properties.HOLLY.hangingSign().sound(SoundType.CHERRY_WOOD_HANGING_SIGN), Properties.HOLLY_WOOD_TYPE));
+    public static final Block HOLLY_STANDING_SIGN = rawRegister("holly_sign", new StandingSignBlock(Properties.HOLLY.sign().sound(SoundType.CHERRY_WOOD), Properties.HOLLY_WOOD_TYPE));
+    public static final Block HOLLY_WALL_SIGN = rawRegister("holly_wall_sign", new WallSignBlock(Properties.HOLLY.sign().sound(SoundType.CHERRY_WOOD), Properties.HOLLY_WOOD_TYPE));
+    public static final Block HOLLY_CEILING_HANGING_SIGN = rawRegister("holly_hanging_sign", new CeilingHangingSignBlock(Properties.HOLLY.hangingSign().sound(SoundType.CHERRY_WOOD_HANGING_SIGN), Properties.HOLLY_WOOD_TYPE));
+    public static final Block HOLLY_WALL_HANGING_SIGN = rawRegister("holly_wall_hanging_sign", new WallHangingSignBlock(Properties.HOLLY.hangingSign().sound(SoundType.CHERRY_WOOD_HANGING_SIGN), Properties.HOLLY_WOOD_TYPE));
 
     public static final Block HOLLY_BEEHIVE = register("holly_beehive", new WindsweptBeehiveBlock(Properties.HOLLY.beehive()));
     public static final Block HOLLY_LADDER = register("holly_ladder", new LadderBlock(Properties.HOLLY.ladder()));
@@ -78,10 +78,10 @@ public class WindsweptBlocks {
     public static final Block CHESTNUT_BUTTON = register("chestnut_button", new ButtonBlock(Properties.CHESTNUT.button(), Properties.CHESTNUT_BLOCK_SET, 30, true));
     public static final Block CHESTNUT_DOOR = register("chestnut_door", new DoorBlock(Properties.CHESTNUT.door(), Properties.CHESTNUT_BLOCK_SET));
     public static final Block CHESTNUT_TRAPDOOR = register("chestnut_trapdoor", new TrapDoorBlock(Properties.CHESTNUT.trapdoor(), Properties.CHESTNUT_BLOCK_SET));
-    public static final Block CHESTNUT_STANDING_SIGN = register("chestnut_sign", new StandingSignBlock(Properties.CHESTNUT.sign(), Properties.CHESTNUT_WOOD_TYPE));
-    public static final Block CHESTNUT_WALL_SIGN = register("chestnut_wall_sign", new WallSignBlock(Properties.CHESTNUT.sign(), Properties.CHESTNUT_WOOD_TYPE));
-    public static final Block CHESTNUT_CEILING_HANGING_SIGN = register("chestnut_hanging_sign", new CeilingHangingSignBlock(Properties.CHESTNUT.hangingSign(), Properties.CHESTNUT_WOOD_TYPE));
-    public static final Block CHESTNUT_WALL_HANGING_SIGN = register("chestnut_wall_hanging_sign", new WallHangingSignBlock(Properties.CHESTNUT.hangingSign(), Properties.CHESTNUT_WOOD_TYPE));
+    public static final Block CHESTNUT_STANDING_SIGN = rawRegister("chestnut_sign", new StandingSignBlock(Properties.CHESTNUT.sign(), Properties.CHESTNUT_WOOD_TYPE));
+    public static final Block CHESTNUT_WALL_SIGN = rawRegister("chestnut_wall_sign", new WallSignBlock(Properties.CHESTNUT.sign(), Properties.CHESTNUT_WOOD_TYPE));
+    public static final Block CHESTNUT_CEILING_HANGING_SIGN = rawRegister("chestnut_hanging_sign", new CeilingHangingSignBlock(Properties.CHESTNUT.hangingSign(), Properties.CHESTNUT_WOOD_TYPE));
+    public static final Block CHESTNUT_WALL_HANGING_SIGN = rawRegister("chestnut_wall_hanging_sign", new WallHangingSignBlock(Properties.CHESTNUT.hangingSign(), Properties.CHESTNUT_WOOD_TYPE));
 
     public static final Block CHESTNUT_BEEHIVE = register("chestnut_beehive", new WindsweptBeehiveBlock(Properties.CHESTNUT.beehive()));
     public static final Block CHESTNUT_LADDER = register("chestnut_ladder", new LadderBlock(Properties.CHESTNUT.ladder()));
@@ -110,10 +110,10 @@ public class WindsweptBlocks {
     public static final Block PINE_BUTTON = register("pine_button", new ButtonBlock(Properties.PINE.button(), Properties.PINE_BLOCK_SET, 30, true));
     public static final Block PINE_DOOR = register("pine_door", new DoorBlock(Properties.PINE.door(), Properties.PINE_BLOCK_SET));
     public static final Block PINE_TRAPDOOR = register("pine_trapdoor", new TrapDoorBlock(Properties.PINE.trapdoor(), Properties.PINE_BLOCK_SET));
-    public static final Block PINE_STANDING_SIGN = register("pine_sign", new StandingSignBlock(Properties.PINE.sign(), Properties.PINE_WOOD_TYPE));
-    public static final Block PINE_WALL_SIGN = register("pine_wall_sign", new WallSignBlock(Properties.PINE.sign(), Properties.PINE_WOOD_TYPE));
-    public static final Block PINE_CEILING_HANGING_SIGN = register("pine_hanging_sign", new CeilingHangingSignBlock(Properties.PINE.hangingSign(), Properties.PINE_WOOD_TYPE));
-    public static final Block PINE_WALL_HANGING_SIGN = register("pine_wall_hanging_sign", new WallHangingSignBlock(Properties.PINE.hangingSign(), Properties.PINE_WOOD_TYPE));
+    public static final Block PINE_STANDING_SIGN = rawRegister("pine_sign", new StandingSignBlock(Properties.PINE.sign(), Properties.PINE_WOOD_TYPE));
+    public static final Block PINE_WALL_SIGN = rawRegister("pine_wall_sign", new WallSignBlock(Properties.PINE.sign(), Properties.PINE_WOOD_TYPE));
+    public static final Block PINE_CEILING_HANGING_SIGN = rawRegister("pine_hanging_sign", new CeilingHangingSignBlock(Properties.PINE.hangingSign(), Properties.PINE_WOOD_TYPE));
+    public static final Block PINE_WALL_HANGING_SIGN = rawRegister("pine_wall_hanging_sign", new WallHangingSignBlock(Properties.PINE.hangingSign(), Properties.PINE_WOOD_TYPE));
 
     public static final Block PINE_BEEHIVE = register("pine_beehive", new WindsweptBeehiveBlock(Properties.PINE.beehive()));
     public static final Block PINE_LADDER = register("pine_ladder", new LadderBlock(Properties.PINE.ladder()));
@@ -137,6 +137,14 @@ public class WindsweptBlocks {
     public static final Block GELISOL = register("gelisol", new GelisolBlock(BlockBehaviour.Properties.copy(Blocks.PODZOL)));
     public static final Block GELISOL_PATH = register("gelisol_path", new DirtPathBlock(BlockBehaviour.Properties.copy(Blocks.DIRT_PATH)));
 
+    // Tall Flowers//
+    public static final Block LUPINE = register("lupine", new TallFlowerBlock(Properties.FLOWER));
+    public static final Block LIONS_TAIL = register("lions_tail", new TallFlowerBlock(Properties.FLOWER));
+    public static final Block RED_ROSE_BUSH = register("red_rose_bush", new TallFlowerBlock(Properties.FLOWER));
+    public static final Block BLUE_ROSE_BUSH = register("blue_rose_bush", new TallFlowerBlock(Properties.FLOWER));
+    public static final Block WHITE_ROSE_BUSH = register("white_rose_bush", new TallFlowerBlock(Properties.FLOWER));
+    public static final Block YELLOW_ROSE_BUSH = register("yellow_rose_bush", new TallFlowerBlock(Properties.FLOWER));
+
     // Plants //
     public static final Block RED_ROSE = register("red_rose", new RoseFlowerBlock(WindsweptBlocks.RED_ROSE_BUSH, MobEffects.WITHER, 5, Properties.FLOWER));
     public static final Block BLUE_ROSE = register("blue_rose", new RoseFlowerBlock(WindsweptBlocks.BLUE_ROSE_BUSH, MobEffects.WITHER, 5, Properties.FLOWER));
@@ -150,14 +158,6 @@ public class WindsweptBlocks {
     public static final Block WILD_GINGER = register("wild_ginger", new FlowerBlock(MobEffects.DAMAGE_BOOST, 5, Properties.FLOWER));
     public static final Block NIGHTSHADE = register("nightshade", new NightshadeFlowerBlock(MobEffects.NIGHT_VISION, 5, BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).lightLevel(state -> 9)));
     public static final Block MIMOSA = register("mimosa", new MimosaBlock(MobEffects.FIRE_RESISTANCE, 5, Properties.FLOWER.sound(SoundType.NETHER_SPROUTS)));
-
-    // Tall Flowers//
-    public static final Block LUPINE = register("lupine", new TallFlowerBlock(Properties.FLOWER));
-    public static final Block LIONS_TAIL = register("lions_tail", new TallFlowerBlock(Properties.FLOWER));
-    public static final Block RED_ROSE_BUSH = register("red_rose_bush", new TallFlowerBlock(Properties.FLOWER));
-    public static final Block BLUE_ROSE_BUSH = register("blue_rose_bush", new TallFlowerBlock(Properties.FLOWER));
-    public static final Block WHITE_ROSE_BUSH = register("white_rose_bush", new TallFlowerBlock(Properties.FLOWER));
-    public static final Block YELLOW_ROSE_BUSH = register("yellow_rose_bush", new TallFlowerBlock(Properties.FLOWER));
 
     // Lavender //
     public static final Block LAVENDER = register("lavender", new LavenderBlock(Properties.FLOWER.sound(SoundType.AZALEA).randomTicks()));
@@ -173,11 +173,11 @@ public class WindsweptBlocks {
     public static final Block YELLOW_PETALS = register("yellow_petals", new PinkPetalsBlock(BlockBehaviour.Properties.copy(Blocks.PINK_PETALS)));
 
     // Decoration Blocks //
-    public static final Block HOLLY_WREATH = register("holly_wreath", new WallDecorationBlock(Block.Properties.of().instabreak().sound(SoundType.AZALEA).noCollission()), new WearableBlockItem(WindsweptBlocks.HOLLY_WREATH, new Item.Properties()));
-    public static final Block PINECONE_WREATH = register("pinecone_wreath", new WallDecorationBlock(Block.Properties.of().instabreak().sound(SoundType.AZALEA).noCollission()), new WearableBlockItem(WindsweptBlocks.PINECONE_WREATH, new Item.Properties()));
-    public static final Block VINE_WREATH = register("vine_wreath", new WallDecorationBlock(Block.Properties.of().instabreak().sound(SoundType.AZALEA).noCollission()), new WearableBlockItem(WindsweptBlocks.VINE_WREATH, new Item.Properties()));
-    public static final Block CHERRY_WREATH = register("cherry_wreath", new WallDecorationBlock(Block.Properties.of().instabreak().sound(SoundType.AZALEA).noCollission()), new WearableBlockItem(WindsweptBlocks.CHERRY_WREATH, new Item.Properties()));
-    public static final Block CHRISTMAS_PUDDING = register("christmas_pudding", new ChristmasPuddingBlock(BlockBehaviour.Properties.copy(Blocks.CAKE).noOcclusion()), new Item(new Item.Properties().stacksTo(1)));
+    //public static final Block HOLLY_WREATH = register("holly_wreath", new WallDecorationBlock(Block.Properties.of().instabreak().sound(SoundType.AZALEA).noCollission()), new WearableBlockItem(WindsweptBlocks.HOLLY_WREATH, new Item.Properties()));
+    //public static final Block PINECONE_WREATH = register("pinecone_wreath", new WallDecorationBlock(Block.Properties.of().instabreak().sound(SoundType.AZALEA).noCollission()), new WearableBlockItem(WindsweptBlocks.PINECONE_WREATH, new Item.Properties()));
+    //public static final Block VINE_WREATH = register("vine_wreath", new WallDecorationBlock(Block.Properties.of().instabreak().sound(SoundType.AZALEA).noCollission()), new WearableBlockItem(WindsweptBlocks.VINE_WREATH, new Item.Properties()));
+    //public static final Block CHERRY_WREATH = register("cherry_wreath", new WallDecorationBlock(Block.Properties.of().instabreak().sound(SoundType.AZALEA).noCollission()), new WearableBlockItem(WindsweptBlocks.CHERRY_WREATH, new Item.Properties()));
+    public static final Block CHRISTMAS_PUDDING = rawRegister("christmas_pudding", new ChristmasPuddingBlock(BlockBehaviour.Properties.copy(Blocks.CAKE).noOcclusion()));
     public static final Block FROSTBITER_TROPHY = register("frostbiter_trophy", new WallDecorationBlock(Properties.HOLLY.ladder().sound(SoundType.WOOD)));
     public static final Block ICE_SHEET = register("ice_sheet", new IceSheetBlock(BlockBehaviour.Properties.of().strength(.3f).sound(SoundType.GLASS).noOcclusion().friction(.98f)));
 
@@ -197,7 +197,7 @@ public class WindsweptBlocks {
     public static final Block DREAM_CATCHER = register("dream_catcher", new DreamCatcherBlock(Properties.ELDER_ORNAMENT));
 
     public static final Block PINECONE_BLOCK = register("pinecone_block", new PineconeBlockBlock(Properties.PINECONE_BLOCK));
-    public static final Block CARVED_PINECONE_BLOCK = register("carved_pinecone_block", new CarvedPineconeBlock(BlockBehaviour.Properties.copy(PINECONE_BLOCK).randomTicks()), new WearableBlockItem(WindsweptBlocks.CARVED_PINECONE_BLOCK, new Item.Properties()));
+    public static final Block CARVED_PINECONE_BLOCK = rawRegister("carved_pinecone_block", new CarvedPineconeBlock(BlockBehaviour.Properties.copy(PINECONE_BLOCK).randomTicks()));
     public static final Block WILL_O_THE_WISP = register("will_o_the_wisp", new WillOTheWispBlock(BlockBehaviour.Properties.copy(PINECONE_BLOCK).lightLevel(s -> 10)), new Item(new Item.Properties().rarity(Rarity.RARE)));
 
     // Pinecone Shingles //
@@ -413,6 +413,9 @@ public class WindsweptBlocks {
 
     private static Block register(String name, Block block, Item item) {
         Registry.register(BuiltInRegistries.ITEM, Windswept.id(name), item);
+        if (item instanceof BlockItem) {
+            Item.BY_BLOCK.put(block, item);
+        }
         return rawRegister(name, block);
     }
     

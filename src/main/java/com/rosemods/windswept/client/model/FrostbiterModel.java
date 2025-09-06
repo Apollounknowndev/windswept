@@ -3,8 +3,6 @@ package com.rosemods.windswept.client.model;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.rosemods.windswept.common.entity.Frostbiter;
-import com.rosemods.windswept.core.registry.WindsweptPlayableEndimations;
-import com.teamabnormals.blueprint.core.endimator.Endimator;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -51,14 +49,13 @@ public class FrostbiterModel extends EntityModel<Frostbiter> implements HeadedMo
         this.brokenLeftAntler = this.head.getChild("broken_left_antler");
         this.brokenRightAntler = this.head.getChild("broken_right_antler");
 
-        this.endimator = Endimator.compile(root);
+        //this.endimator = Endimator.compile(root);
     }
 
     @Override
     public void setupAnim(Frostbiter frostbiter, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        super.setupAnim(frostbiter, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-        boolean isShaking = frostbiter.isEndimationPlaying(WindsweptPlayableEndimations.FROSTBITER_SHAKE);
-        boolean isEating = frostbiter.isEndimationPlaying(WindsweptPlayableEndimations.FROSTBITER_SHAKE);
+        boolean isShaking = false;
+        boolean isEating = false;
 
         float smallLimbSwingAmount = Math.min(limbSwingAmount, .15f);
         float largeLimbSwingAmount = Math.min(limbSwingAmount, .5f);
@@ -104,8 +101,8 @@ public class FrostbiterModel extends EntityModel<Frostbiter> implements HeadedMo
             }
         }
 
-        this.front.visible = frostbiter.isNoEndimationPlaying();
-        this.frontEyesClosed.visible = !this.front.visible;
+        this.front.visible = true;
+        this.frontEyesClosed.visible = false;
         this.leaves.visible = frostbiter.hasAntlers();
         this.leash.visible = frostbiter.isTame();
         this.saddle.visible = frostbiter.isSaddled();

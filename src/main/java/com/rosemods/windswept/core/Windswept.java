@@ -4,16 +4,19 @@ import com.rosemods.windswept.core.other.*;
 import com.rosemods.windswept.core.other.events.WindsweptTradeEvents;
 import com.rosemods.windswept.core.registry.*;
 import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
+import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.config.ModConfig;
 
-public class Windswept {
+public class Windswept implements ModInitializer {
     public static final String MOD_ID = "windswept";
 
-    public Windswept() {
+    public void onInitialize() {
+        WindsweptBlocks.init();
+        WindsweptItems.init();
+
         WindsweptAttributes.init();
         WindsweptBannerPatterns.init();
-        WindsweptBlocks.init();
         WindsweptBlockEntities.init();
         WindsweptEffects.init();
         WindsweptEnchantments.init();
@@ -21,7 +24,6 @@ public class Windswept {
         WindsweptEntityTypes.init();
         WindsweptFeatures.init();
         WindsweptFoliagePlacers.init();
-        WindsweptItems.init();
         WindsweptPaintingVariants.init();
         WindsweptParticleTypes.init();
         WindsweptPotPatterns.init();

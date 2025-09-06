@@ -1,9 +1,11 @@
 package com.rosemods.windswept.core.other;
 
+import com.rosemods.windswept.core.registry.WindsweptItems;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 
 import static com.rosemods.windswept.core.registry.WindsweptBlocks.*;
+import static com.rosemods.windswept.core.registry.WindsweptBlocks.CARVED_PINECONE_BLOCK;
 import static com.rosemods.windswept.core.registry.WindsweptItems.*;
 
 public final class WindsweptBlockInfo {
@@ -56,7 +58,7 @@ public final class WindsweptBlockInfo {
 
         registry.add(GINGERBREAD_COOKIE, .85f);
         registry.add(MUTTON_PIE, 1f);
-        registry.add(CHRISTMAS_PUDDING, 1f);
+        registry.add(WindsweptItems.CHRISTMAS_PUDDING, 1f);
 
         registry.add(PINECONE_BLOCK, 1f);
         registry.add(PINECONE_JAM_BLOCK, 1f);
@@ -77,7 +79,6 @@ public final class WindsweptBlockInfo {
         registry.add(HOLLY_LEAVES, 30, 60);
         registry.add(HOLLY_BOOKSHELF, 30, 20);
         registry.add(HOLLY_BEEHIVE, 5, 20);
-        registry.add(HOLLY_LEAF_PILE, 30, 60);
 
         registry.add(STRIPPED_CHESTNUT_LOG, 5, 5);
         registry.add(STRIPPED_CHESTNUT_WOOD, 5, 5);
@@ -92,7 +93,6 @@ public final class WindsweptBlockInfo {
         registry.add(CHESTNUT_LEAVES, 30, 60);
         registry.add(CHESTNUT_BOOKSHELF, 30, 20);
         registry.add(CHESTNUT_BEEHIVE, 5, 20);
-        registry.add(CHESTNUT_LEAF_PILE, 30, 60);
 
         registry.add(STRIPPED_PINE_LOG, 5, 5);
         registry.add(STRIPPED_PINE_WOOD, 5, 5);
@@ -107,7 +107,6 @@ public final class WindsweptBlockInfo {
         registry.add(PINE_LEAVES, 30, 60);
         registry.add(PINE_BOOKSHELF, 30, 20);
         registry.add(PINE_BEEHIVE, 5, 20);
-        registry.add(PINE_LEAF_PILE, 30, 60);
 
         registry.add(PINECONE_BLOCK, 5, 20);
         registry.add(CARVED_PINECONE_BLOCK, 5, 20);

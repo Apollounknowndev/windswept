@@ -3,6 +3,7 @@ package com.rosemods.windswept.core.mixin.client;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.rosemods.windswept.core.Windswept;
 import com.rosemods.windswept.core.registry.WindsweptBlocks;
+import com.rosemods.windswept.core.registry.WindsweptItems;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
@@ -29,7 +30,7 @@ public abstract class GuiMixin {
         )
     )
     private void getTextureLocation(GuiGraphics guiGraphics, float f, CallbackInfo ci, @Local(ordinal = 0) ItemStack stack) {
-        if (stack.is(WindsweptBlocks.CARVED_PINECONE_BLOCK.asItem())) {
+        if (stack.is(WindsweptItems.CARVED_PINECONE_BLOCK.asItem())) {
             this.renderTextureOverlay(guiGraphics, PINECONE_BLUR, 1.0F);
         }
     }

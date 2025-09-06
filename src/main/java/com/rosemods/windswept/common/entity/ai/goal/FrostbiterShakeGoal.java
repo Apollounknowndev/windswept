@@ -1,8 +1,6 @@
 package com.rosemods.windswept.common.entity.ai.goal;
 
 import com.rosemods.windswept.common.entity.Frostbiter;
-import com.rosemods.windswept.core.registry.WindsweptPlayableEndimations;
-import com.teamabnormals.blueprint.core.util.NetworkUtil;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.goal.Goal;
 
@@ -21,7 +19,6 @@ public class FrostbiterShakeGoal extends Goal {
     @Override
     public boolean canUse() {
         return this.frostbiter.getRandom().nextInt(900) == 0
-                && this.frostbiter.isNoEndimationPlaying()
                 && this.frostbiter.hasAntlers()
                 && !this.frostbiter.isVehicle()
                 && this.frostbiter.isTame();
@@ -37,7 +34,6 @@ public class FrostbiterShakeGoal extends Goal {
         this.tick = this.adjustedTickDelay(40);
         this.frostbiter.level().broadcastEntityEvent(this.frostbiter, (byte) 10);
         this.frostbiter.getNavigation().stop();
-        NetworkUtil.setPlayingAnimation(this.frostbiter, WindsweptPlayableEndimations.FROSTBITER_SHAKE);
     }
 
     @Override

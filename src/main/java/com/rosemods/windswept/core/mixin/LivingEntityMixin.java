@@ -6,12 +6,16 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.rosemods.windswept.common.enchantment.curse.SlippingCurseEnchantment;
 import com.rosemods.windswept.common.item.AntlerHelmetItem;
 import com.rosemods.windswept.common.item.SnowBootsItem;
+import com.rosemods.windswept.core.duck.LivingEntityDuck;
 import com.rosemods.windswept.core.other.WindsweptEntityData;
 import com.rosemods.windswept.core.other.events.WindsweptEntityEvents;
 import com.rosemods.windswept.core.other.tags.WindsweptEntityTypeTags;
 import com.rosemods.windswept.core.registry.WindsweptEffects;
 import com.rosemods.windswept.core.registry.WindsweptItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -23,13 +27,19 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity {
+public abstract class LivingEntityMixin extends Entity implements LivingEntityDuck {
+    @Unique private static final EntityDataAccessor<Boolean> IS_FREEZE_CONVERTING = SynchedEntityData.defineId(LivingEntity.class, EntityDataSerializers.BOOLEAN);
+    @Unique private static final EntityDataAccessor<Boolean> CLOAKED = SynchedEntityData.defineId(LivingEntity.class, EntityDataSerializers.BOOLEAN);
+    @Unique private static final EntityDataAccessor<Integer> FREEZE_CONVERT_TIME = SynchedEntityData.defineId(LivingEntity.class, EntityDataSerializers.INT);
+    @Unique private static final EntityDataAccessor<Integer> POWDER_SNOW_TIME = SynchedEntityData.defineId(LivingEntity.class, EntityDataSerializers.INT);
+
     private LivingEntityMixin(EntityType<?> type, Level level) {
         super(type, level);
     }
@@ -39,10 +49,10 @@ public abstract class LivingEntityMixin extends Entity {
         at = @At("TAIL")
     )
     private void addCloakedData(CallbackInfo ci) {
-        this.entityData.define(WindsweptEntityData.CLOAKED, false);
-        this.entityData.define(WindsweptEntityData.IS_FREEZE_CONVERTING, false);
-        this.entityData.define(WindsweptEntityData.FREEZE_CONVERT_TIME, 0);
-        this.entityData.define(WindsweptEntityData.POWDER_SNOW_TIME, 0);
+        this.entityData.define(CLOAKED, false);
+        this.entityData.define(IS_FREEZE_CONVERTING, false);
+        this.entityData.define(FREEZE_CONVERT_TIME, 0);
+        this.entityData.define(POWDER_SNOW_TIME, 0);
 
     }
 
@@ -128,4 +138,13 @@ public abstract class LivingEntityMixin extends Entity {
         }
     }
 
+    @Override
+    public boolean isFreezeConverting() {
+        return this.entityData.get(IS_FREEZE_CONVERTING);
+    }
+
+    @Override
+    public boolean isCloaked() {
+        return this.entityData.get(CLOAKED);
+    }
 }

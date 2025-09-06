@@ -1,8 +1,10 @@
 package com.rosemods.windswept.core.other;
 
+import com.rosemods.windswept.core.registry.WindsweptItems;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import org.slf4j.LoggerFactory;
 
 import static com.rosemods.windswept.core.registry.WindsweptBlocks.*;
 import static com.rosemods.windswept.core.registry.WindsweptItems.*;
@@ -11,6 +13,7 @@ import static net.minecraft.world.item.CreativeModeTabs.*;
 public final class WindsweptCreativeTabs {
     public static void setupTabEditors() {
         ItemGroupEvents.modifyEntriesEvent(BUILDING_BLOCKS).register(entries -> {
+            LoggerFactory.getLogger("windswept").error(HOLLY_LOG.asItem().getDescriptionId());
             entries.addBefore(Blocks.BAMBOO_BLOCK, HOLLY_LOG, HOLLY_WOOD, STRIPPED_HOLLY_LOG, STRIPPED_HOLLY_WOOD, HOLLY_PLANKS);
             entries.addBefore(Blocks.BAMBOO_BLOCK,
                     HOLLY_STAIRS, HOLLY_SLAB, HOLLY_FENCE, HOLLY_FENCE_GATE, HOLLY_DOOR, HOLLY_TRAPDOOR, HOLLY_PRESSURE_PLATE, HOLLY_BUTTON,
@@ -43,8 +46,8 @@ public final class WindsweptCreativeTabs {
             entries.addBefore(Blocks.ANVIL, NIGHT_FAIRY_LIGHT, REDSTONE_FAIRY_LIGHT);
             entries.addBefore(Blocks.CHAIN, ICE_LANTERN);
             entries.addAfter(Blocks.CHAIN, ICE_CHAIN);
-            entries.addAfter(Blocks.JUKEBOX, CARVED_PINECONE_BLOCK, WILL_O_THE_WISP, ELDER_WING, ELDER_ORNAMENT, DREAM_CATCHER, FROSTBITER_TROPHY);
-            entries.addAfter(Blocks.BOOKSHELF, HOLLY_BOOKSHELF, /*CHISELED_HOLLY_BOOKSHELF, */CHESTNUT_BOOKSHELF, PINE_BOOKSHELF);
+            //entries.addAfter(Blocks.JUKEBOX, WindsweptItems.CARVED_PINECONE_BLOCK, WILL_O_THE_WISP, ELDER_WING, ELDER_ORNAMENT, DREAM_CATCHER, FROSTBITER_TROPHY);
+            entries.addAfter(Blocks.BOOKSHELF, HOLLY_BOOKSHELF, CHESTNUT_BOOKSHELF, PINE_BOOKSHELF);
             entries.addAfter(Blocks.SUSPICIOUS_GRAVEL, SUSPICIOUS_SNOW);
         });
         ItemGroupEvents.modifyEntriesEvent(COLORED_BLOCKS).register(entries -> {
@@ -73,7 +76,7 @@ public final class WindsweptCreativeTabs {
             entries.addAfter(Blocks.HONEY_BLOCK, PINECONE_JAM_BLOCK);
             entries.addAfter(Items.SWEET_BERRIES, WILD_BERRIES);
             entries.addAfter(Blocks.HAY_BLOCK, LAVENDER_BALE, CHESTNUT_CRATE, ROASTED_CHESTNUT_CRATE, GINGER_ROOT_CRATE, HOLLY_BERRY_BASKET, WILD_BERRY_BASKET);
-            entries.addAfter(Blocks.FLOWERING_AZALEA, HOLLY_WREATH, VINE_WREATH, PINECONE_WREATH, CHERRY_WREATH);
+            //entries.addAfter(Blocks.FLOWERING_AZALEA, HOLLY_WREATH, VINE_WREATH, PINECONE_WREATH, CHERRY_WREATH);
             entries.addAfter(Blocks.ACACIA_SAPLING, FLOWERING_ACACIA_SAPLING);
             entries.addAfter(Blocks.ACACIA_LEAVES, FLOWERING_ACACIA_LEAVES);
             entries.addAfter(Blocks.PINK_PETALS, YELLOW_PETALS);
@@ -81,7 +84,7 @@ public final class WindsweptCreativeTabs {
         ItemGroupEvents.modifyEntriesEvent(REDSTONE_BLOCKS).register(entries -> {
             entries.addAfter(Blocks.COMPARATOR, REDSTONE_FAIRY_LIGHT);
             entries.addAfter(Blocks.HONEY_BLOCK, PINECONE_JAM_BLOCK);
-            entries.addAfter(Blocks.NOTE_BLOCK, CARVED_PINECONE_BLOCK);
+            entries.addAfter(Blocks.NOTE_BLOCK, WindsweptItems.CARVED_PINECONE_BLOCK);
         });
         ItemGroupEvents.modifyEntriesEvent(COMBAT).register(entries -> {
             entries.addAfter(Items.SPECTRAL_ARROW, FROST_ARROW);
@@ -112,7 +115,7 @@ public final class WindsweptCreativeTabs {
                 entries.addAfter(Items.GOLDEN_CARROT, CHESTNUTS, ROASTED_CHESTNUTS);
                 entries.addAfter(Items.RABBIT_STEW, CHESTNUT_SOUP, GOAT_STEW);
                 entries.addAfter(Items.PUMPKIN_PIE, MUTTON_PIE);
-                entries.addAfter(Items.CAKE, CHRISTMAS_PUDDING);
+                entries.addAfter(Items.CAKE, WindsweptItems.CHRISTMAS_PUDDING);
                 entries.addAfter(Items.POISONOUS_POTATO, GINGER_ROOT, SPICY_SNOW_CONE, SWEET_SNOW_CONE, MINTY_SNOW_CONE);
                 entries.addAfter(Items.COOKED_MUTTON, GOAT, COOKED_GOAT);
                 entries.addAfter(Items.MILK_BUCKET, WOODEN_MILK_BUCKET);

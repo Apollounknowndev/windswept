@@ -32,7 +32,7 @@ public class WoodenBucketItem extends BucketItem {
     protected final Fluid fluid;
 
     public WoodenBucketItem(Fluid fluid, Properties builder) {
-        super(fluid, builder.durability(WindsweptConfig.COMMON.woodenBucketDurabilty.get()));
+        super(fluid, builder.durability(24));
         this.fluid = fluid;
     }
 

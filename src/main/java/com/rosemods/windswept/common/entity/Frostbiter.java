@@ -53,7 +53,7 @@ import java.util.UUID;
 import java.util.function.Predicate;
 
 // TODO: FIX
-public class Frostbiter extends TamableAnimal implements Endimatable, NeutralMob, ItemSteerable, Saddleable {
+public class Frostbiter extends TamableAnimal implements NeutralMob, ItemSteerable, Saddleable {
     private static final EntityDataAccessor<Boolean> LEFT_ANTLER = SynchedEntityData.defineId(Frostbiter.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> RIGHT_ANTLER = SynchedEntityData.defineId(Frostbiter.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> SADDLED = SynchedEntityData.defineId(Frostbiter.class, EntityDataSerializers.BOOLEAN);

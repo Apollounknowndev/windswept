@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class SnowLayerBlockMixin {
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
     private void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand, CallbackInfo info) {
-        if (level.isRainingAt(pos) && WindsweptConfig.COMMON.rainWashSnow) {
+        if (level.isRainingAt(pos) && WindsweptConfig.COMMON.rainWashSnow.get()) {
             int i = state.getValue(SnowLayerBlock.LAYERS);
 
             if (i == 1)

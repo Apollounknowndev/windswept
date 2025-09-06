@@ -2,12 +2,10 @@ package com.rosemods.windswept.common.entity.ai.goal;
 
 import com.rosemods.windswept.common.entity.Frostbiter;
 import com.rosemods.windswept.core.other.tags.WindsweptBlockTags;
-import com.rosemods.windswept.core.registry.WindsweptPlayableEndimations;
-import com.teamabnormals.blueprint.core.util.NetworkUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraft.world.level.GameRules;
 
 import java.util.EnumSet;
 
@@ -23,8 +21,7 @@ public class FrostbiterEatGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        return this.frostbiter.getRandom().nextInt(100) == 0 && this.frostbiter.isNoEndimationPlaying()
-                && this.isFoodAt(this.frostbiter.blockPosition()) && !this.frostbiter.isVehicle();
+        return this.frostbiter.getRandom().nextInt(100) == 0 && this.isFoodAt(this.frostbiter.blockPosition()) && !this.frostbiter.isVehicle();
     }
 
     @Override
@@ -37,7 +34,6 @@ public class FrostbiterEatGoal extends Goal {
         this.tick = this.adjustedTickDelay(40);
         this.frostbiter.level().broadcastEntityEvent(this.frostbiter, (byte) 10);
         this.frostbiter.getNavigation().stop();
-        NetworkUtil.setPlayingAnimation(this.frostbiter, WindsweptPlayableEndimations.FROSTBITER_EAT);
     }
 
     @Override
@@ -55,7 +51,7 @@ public class FrostbiterEatGoal extends Goal {
             if (this.isFoodAt(pos)) {
                 this.frostbiter.ate();
 
-                if (ForgeEventFactory.getMobGriefingEvent(this.frostbiter.level(), this.frostbiter))
+                if (this.frostbiter.level().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))
                     this.frostbiter.level().destroyBlock(pos, false);
 
                 if (this.frostbiter.isBaby())
@@ -64,10 +60,6 @@ public class FrostbiterEatGoal extends Goal {
                     this.frostbiter.growRandomAntler();
             }
         }
-
-        //if (frostbiter.isTame() && tick % 2 == 0 && tick > adjustedTickDelay(10) && tick < adjustedTickDelay(30))
-        //this.frostbiter.playSound(SoundEvents.BELL_BLOCK, .5f, .5f);
-
     }
 
     private boolean isFoodAt(BlockPos pos) {
